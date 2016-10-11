@@ -54,7 +54,7 @@ public class MyCalcMethods implements Calculator {
 		ScriptEngineManager mgr = new ScriptEngineManager();
 	    ScriptEngine engine = mgr.getEngineByName("JavaScript");
 	    try{
-	   result = String.valueOf(engine.eval(s+"+0.0"));
+	   result = String.valueOf(engine.eval(current()+"+0.0"));
 	    }
 	    catch(Exception e){
 	    	throw new RuntimeException();
@@ -176,31 +176,7 @@ public static void main(String[] args) {
 	x.input("2-5");
 	x.input("22/7");
 	x.input("1/12");
-	System.out.println(x.current());
-	System.out.println(x.prev());
-	System.out.println(x.prev());
-	System.out.println(x.next());
-	System.out.println(x.prev());
-	System.out.println(x.prev());
-	System.out.println(x.prev());
-	System.out.println(x.prev());
-	System.out.println(x.prev());
-	System.out.println(x.current());
-	System.out.println(x.next());
-	System.out.println(x.current());
-	x.save();
-	x.input("0*0");
-	System.out.println(x.current());
-	System.out.println(x.prev());
-	x.load();
-	System.out.println(x.current());
-	System.out.println(x.next());
-	System.out.println(x.next());
-	System.out.println(x.next());
-	System.out.println(x.next());
-	System.out.println(x.next());
-	
-	
+	System.out.println(x.getResult());
 
 }
 }
