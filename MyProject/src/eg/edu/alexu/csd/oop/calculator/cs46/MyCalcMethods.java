@@ -164,20 +164,9 @@ public class MyCalcMethods implements Calculator {
 		}
 	 
 		br.close();
-		return ls;
-	}
-
-
-public static void main(String[] args) {
-	MyCalcMethods x = new MyCalcMethods();
-	x.input("1+2");
-	
-	x.input("3*4");
-	x.input("2-5");
-	x.input("22/7");
-	x.input("1/12");
-	System.out.println(x.getResult());
-
+	return ls;
 }
+
+
 }
 

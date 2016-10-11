@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Gui3 {
+public class Gui {
 
 	private MyCalcMethods m = new MyCalcMethods();
 	private JFrame frame;
@@ -24,7 +24,7 @@ public class Gui3 {
 	private String server;
 	private JLabel label;
 
-	public Gui3() {
+	public Gui() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 646, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -233,7 +233,7 @@ public class Gui3 {
 		});
 		buttondot.setBounds(199, 178, 45, 23);
 		frame.getContentPane().add(buttondot);
-		
+
 		JButton buttonrt = new JButton("(");
 		buttonrt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -265,7 +265,7 @@ public class Gui3 {
 
 	public static void main(String[] args) {
 
-		Gui3 gui = new Gui3();
+		Gui gui = new Gui();
 
 	}
 }
