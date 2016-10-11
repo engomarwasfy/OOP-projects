@@ -54,7 +54,7 @@ public class MyCalcMethods implements Calculator {
 		ScriptEngineManager mgr = new ScriptEngineManager();
 	    ScriptEngine engine = mgr.getEngineByName("JavaScript");
 	    try{
-	   result = String.valueOf(engine.eval(s));
+	   result = String.valueOf(engine.eval(s+"+0.0"));
 	    }
 	    catch(Exception e){
 	    	throw new RuntimeException();
