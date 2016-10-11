@@ -67,13 +67,16 @@ public class MyCalcMethods implements Calculator {
 	public String current() {
 		// TODO Auto-generated method stub
 		//will return null as initialized before if no input
+		if(pointer==-1){
+			return null;
+		}
 		return ls.get(pointer);
 	}
 
 	@Override
 	public String prev() {
 		// TODO Auto-generated method stub
-		if (pointer==0){
+		if (pointer==0||pointer==-1){
 			return null;
 		}
 		pointer--;
@@ -89,7 +92,7 @@ public class MyCalcMethods implements Calculator {
 	@Override
 	public String next() {
 		// TODO Auto-generated method stub
-		if(pointer==ls.size()-1){
+		if(pointer==ls.size()-1||pointer==-1){
 			return null;
 		}
 		pointer++;
