@@ -49,7 +49,8 @@ public class MyCalcMethods implements Calculator {
 	ScriptEngineManager mgr = new ScriptEngineManager();
 	ScriptEngine engine = mgr.getEngineByName("JavaScript");
 	try {
-	    result = (engine.eval(current() + "+0.0")).toString();
+		current();
+	    result = (engine.eval(s + "+0.0")).toString();
 	} catch (Exception e) {
 	    throw new RuntimeException();
 	}
@@ -64,6 +65,7 @@ public class MyCalcMethods implements Calculator {
 	if (pointer == -1) {
 	    return null;
 	}
+	s=ls.get(pointer);
 	return ls.get(pointer);
     }
 
