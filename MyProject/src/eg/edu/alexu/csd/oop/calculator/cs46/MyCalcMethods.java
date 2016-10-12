@@ -49,7 +49,7 @@ public class MyCalcMethods implements Calculator {
 	ScriptEngineManager mgr = new ScriptEngineManager();
 	ScriptEngine engine = mgr.getEngineByName("JavaScript");
 	try {
-	    result = String.valueOf(engine.eval(current() + "+0.0"));
+	    result = (engine.eval(current() + "+0.0")).toString();
 	} catch (Exception e) {
 	    throw new RuntimeException();
 	}
