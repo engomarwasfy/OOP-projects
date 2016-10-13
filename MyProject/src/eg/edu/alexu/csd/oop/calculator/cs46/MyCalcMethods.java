@@ -14,23 +14,52 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
 import eg.edu.alexu.csd.oop.calculator.Calculator;
-
+/**
+*
+*/
 public class MyCalcMethods implements Calculator {
+/**
+*
+*/
     private File fout;
-    private String s = null;;
+    /**
+    *
+    */
+    private String s = null;
+    /**
+    *
+    */
     private String result;
+    /**
+    *
+    */
     private String server;
+    /**
+    *
+    */
     private LinkedList<String> ls = new LinkedList<String>();
+    /**
+    *
+    */
     private int count = -1;
+    /**
+    *
+    */
     private int pointer = -1;
+    /**
+    *
+    */
     private Integer countint;
+    /**
+    *
+    */
     private Integer pointerint;
 
     @Override
-    public void input(String s) {
+	public final void input(final String s) {
 	this.s = s;
 	if (getResult() != null || s == "null") {
-	    if (count == 4) {
+	    if (count == s("4")) {
 		ls.removeFirst();
 		ls.addLast(s);
 		pointer = count;
@@ -44,7 +73,7 @@ public class MyCalcMethods implements Calculator {
     }
 
     @Override
-    public String getResult() {
+	public final String getResult() {
 
 	ScriptEngineManager mgr = new ScriptEngineManager();
 	ScriptEngine engine = mgr.getEngineByName("JavaScript");
@@ -59,18 +88,18 @@ public class MyCalcMethods implements Calculator {
     }
 
     @Override
-    public String current() {
+	public final String current() {
 	// TODO Auto-generated method stub
 	// will return null as initialized before if no input
 	if (pointer == -1) {
 	    return null;
 	}
-	s=ls.get(pointer);
+	s = ls.get(pointer);
 	return ls.get(pointer);
     }
 
     @Override
-    public String prev() {
+	public final String prev() {
 	// TODO Auto-generated method stub
 	if (pointer == 0 || pointer == -1) {
 	    return null;
@@ -79,14 +108,14 @@ public class MyCalcMethods implements Calculator {
 	try {
 	    server = ls.get(pointer);
 	} catch (Exception e) {
-	    // TODO: handle exception
+
 	    return null;
 	}
 	return server;
     }
 
     @Override
-    public String next() {
+	public final String next() {
 	// TODO Auto-generated method stub
 	if (pointer == ls.size() - 1 || pointer == -1) {
 	    return null;
@@ -95,14 +124,14 @@ public class MyCalcMethods implements Calculator {
 	try {
 	    server = ls.get(pointer);
 	} catch (Exception e) {
-	   
+
 	    return null;
 	}
 	return server;
     }
 
     @Override
-    public void save() {
+	public final void save() {
 	// TODO Auto-generated method stub
 	try {
 	    countint = new Integer(count);
@@ -116,7 +145,7 @@ public class MyCalcMethods implements Calculator {
     }
 
     @Override
-    public void load() {
+	public final void load() {
 	// TODO Auto-generated method stub
 	try {
 	    fout = new File("out.txt");
@@ -127,8 +156,11 @@ public class MyCalcMethods implements Calculator {
 	}
 
     }
-
-    public void writeFile(LinkedList<String> s) throws IOException {
+    /**
+    *@throws IOException s
+    *@param s ls
+    */
+    public final void writeFile(final LinkedList<String> s) throws IOException {
 
 	fout = new File("out.txt");
 	FileOutputStream fos = new FileOutputStream(fout, false);
@@ -144,8 +176,12 @@ public class MyCalcMethods implements Calculator {
 	}
 	bw.close();
     }
-
-    public LinkedList<String> readFile(File fin) throws IOException {
+    /**
+    *@param fin f
+    *@return s
+    *@throws IOException s
+    */
+    public final LinkedList<String> readFile(final File fin) throws IOException {
 	LinkedList<String> ls = new LinkedList<String>();
 	FileInputStream fis = new FileInputStream(fin);
 
@@ -162,5 +198,15 @@ public class MyCalcMethods implements Calculator {
 	br.close();
 	return ls;
     }
+    /**
+	 * @return s int
+	 * @param x
+	 *            string
+	 */
+    public final int s(final String x) {
+		return Integer.parseInt(x);
+	}
+
+
 
 }
