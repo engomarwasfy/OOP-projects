@@ -176,13 +176,13 @@ public class MyCalcMethods implements Calculator {
 	bw.close();
     }
     /**
-    *@param fin f
+    *@param in f
     *@return s
     *@throws IOException s
     */
-    public final LinkedList<String> readFile(final File fin) throws IOException {
-	LinkedList<String> ls = new LinkedList<String>();
-	FileInputStream fis = new FileInputStream(fin);
+    public final LinkedList<String> readFile(final File in) throws IOException {
+	LinkedList<String> ls1 = new LinkedList<String>();
+	FileInputStream fis = new FileInputStream(in);
 
 	// Construct BufferedReader from InputStreamReader
 	BufferedReader br = new BufferedReader(new InputStreamReader(fis));
@@ -191,11 +191,11 @@ public class MyCalcMethods implements Calculator {
 
 	String line = null;
 	while ((line = br.readLine()) != null) {
-	    ls.addLast(line);
+	    ls1.addLast(line);
 	}
 
 	br.close();
-	return ls;
+	return ls1;
     }
     /**
 	 * @return s int
