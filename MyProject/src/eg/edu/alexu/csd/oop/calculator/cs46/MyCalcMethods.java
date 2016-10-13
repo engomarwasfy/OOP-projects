@@ -24,7 +24,7 @@ public class MyCalcMethods implements Calculator {
     /**
     *
     */
-    private String s = null;
+    private String s1 = null;
     /**
     *
     */
@@ -55,8 +55,8 @@ public class MyCalcMethods implements Calculator {
     private Integer pointerint;
 
     @Override
-	public final void input(final String s1) {
-	this.s = s1;
+	public final void input(final String s) {
+	this.s1 = s;
 	if (getResult() != null || s == "null") {
 	    if (count == s("4")) {
 		ls.removeFirst();
@@ -78,7 +78,7 @@ public class MyCalcMethods implements Calculator {
 	ScriptEngine engine = mgr.getEngineByName("JavaScript");
 	try {
 		current();
-	    result = (engine.eval(s + "+0.0")).toString();
+	    result = (engine.eval(s1 + "+0.0")).toString();
 	} catch (Exception e) {
 	    throw new RuntimeException();
 	}
@@ -93,7 +93,7 @@ public class MyCalcMethods implements Calculator {
 	if (pointer == -1) {
 	    return null;
 	}
-	s = ls.get(pointer);
+	s1 = ls.get(pointer);
 	return ls.get(pointer);
     }
 
