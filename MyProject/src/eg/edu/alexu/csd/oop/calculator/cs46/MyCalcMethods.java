@@ -55,8 +55,8 @@ public class MyCalcMethods implements Calculator {
     private Integer pointerint;
 
     @Override
-	public final void input(final String s1) {
-	this.s = s1;
+	public final void input(final String s) {
+	this.s = s;
 	if (getResult() != null || s == "null") {
 	    if (count == s("4")) {
 		ls.removeFirst();
@@ -157,9 +157,9 @@ public class MyCalcMethods implements Calculator {
     }
     /**
     *@throws IOException s
-    *@param s1 ls
+    *@param s ls
     */
-    public final void writeFile(final LinkedList<String> s1)throws IOException {
+    public final void writeFile(final LinkedList<String> s) throws IOException {
 
 	fout = new File("out.txt");
 	FileOutputStream fos = new FileOutputStream(fout, false);
@@ -169,20 +169,20 @@ public class MyCalcMethods implements Calculator {
 	bw.append(pointerint.toString());
 	bw.newLine();
 
-	for (int i = 0; i < s1.size(); i++) {
-	    bw.append(s1.get(i));
+	for (int i = 0; i < s.size(); i++) {
+	    bw.append(s.get(i));
 	    bw.newLine();
 	}
 	bw.close();
     }
     /**
-    *@param in f
+    *@param fin f
     *@return s
     *@throws IOException s
     */
-    public final LinkedList<String> readFile(final File in) throws IOException {
-	LinkedList<String> ls1 = new LinkedList<String>();
-	FileInputStream fis = new FileInputStream(in);
+    public final LinkedList<String> readFile(final File fin) throws IOException {
+	LinkedList<String> ls = new LinkedList<String>();
+	FileInputStream fis = new FileInputStream(fin);
 
 	// Construct BufferedReader from InputStreamReader
 	BufferedReader br = new BufferedReader(new InputStreamReader(fis));
@@ -191,11 +191,11 @@ public class MyCalcMethods implements Calculator {
 
 	String line = null;
 	while ((line = br.readLine()) != null) {
-	    ls1.addLast(line);
+	    ls.addLast(line);
 	}
 
 	br.close();
-	return ls1;
+	return ls;
     }
     /**
 	 * @return s int
