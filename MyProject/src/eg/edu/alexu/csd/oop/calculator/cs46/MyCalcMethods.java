@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -56,8 +55,8 @@ public class MyCalcMethods implements Calculator {
     private Integer pointerint;
 
     @Override
-	public final void input(final String s) {
-	this.s = s;
+	public final void input(final String s1) {
+	this.s = s1;
 	if (getResult() != null || s == "null") {
 	    if (count == s("4")) {
 		ls.removeFirst();
@@ -158,9 +157,9 @@ public class MyCalcMethods implements Calculator {
     }
     /**
     *@throws IOException s
-    *@param s ls
+    *@param s1 ls
     */
-    public final void writeFile(final LinkedList<String> s) throws IOException {
+    public final void writeFile(final LinkedList<String> s1)throws IOException {
 
 	fout = new File("out.txt");
 	FileOutputStream fos = new FileOutputStream(fout, false);
@@ -170,20 +169,20 @@ public class MyCalcMethods implements Calculator {
 	bw.append(pointerint.toString());
 	bw.newLine();
 
-	for (int i = 0; i < s.size(); i++) {
-	    bw.append(s.get(i));
+	for (int i = 0; i < s1.size(); i++) {
+	    bw.append(s1.get(i));
 	    bw.newLine();
 	}
 	bw.close();
     }
     /**
-    *@param fin f
+    *@param in f
     *@return s
     *@throws IOException s
     */
-    public final LinkedList<String> readFile(final File fin) throws IOException {
-	LinkedList<String> ls = new LinkedList<String>();
-	FileInputStream fis = new FileInputStream(fin);
+    public final LinkedList<String> readFile(final File in) throws IOException {
+	LinkedList<String> ls1 = new LinkedList<String>();
+	FileInputStream fis = new FileInputStream(in);
 
 	// Construct BufferedReader from InputStreamReader
 	BufferedReader br = new BufferedReader(new InputStreamReader(fis));
@@ -192,11 +191,11 @@ public class MyCalcMethods implements Calculator {
 
 	String line = null;
 	while ((line = br.readLine()) != null) {
-	    ls.addLast(line);
+	    ls1.addLast(line);
 	}
 
 	br.close();
-	return ls;
+	return ls1;
     }
     /**
 	 * @return s int

@@ -31,9 +31,23 @@ private MyCalcMethods m = new MyCalcMethods();
 	/**
 	*
 	*/
-	private JButton btnNext, prevButton, btnSave, btnLoad, btnEnter, button0, button1, button2, button3, button4,
-			button5, button6, button7, button8, button9, plus, minus, multiply, divide, buttonlft, buttonrt, buttondot,
-			buttonclear;
+	private JButton btnNext, prevButton, btnSave, btnLoad;
+	/**
+	*
+	*/
+	private JButton btnEnter, button0, button1, button2, button3, button4;
+	/**
+	*
+	*/
+	private JButton button5, button6, button7, button8;
+	/**
+	*
+	*/
+	private JButton button9, plus, minus, multiply, divide;
+	/**
+	*
+	*/
+	private JButton  buttonlft, buttonrt, buttondot, buttonclear;
 	/**
 	*
 	*/
@@ -212,23 +226,24 @@ private MyCalcMethods m = new MyCalcMethods();
 				String s = "wrong expression";
 				JOptionPane.showMessageDialog(null, "s");
 			}
-		}
 
-		else if (e.getSource().equals(btnSave)) {
+		} else if (e.getSource().equals(btnSave)) {
 			m.save();
 		} else if (e.getSource().equals(btnLoad)) {
 			m.load();
 			textField.setText(m.current());
 		} else if (e.getSource().equals(btnNext)) {
-			if ((server = m.next()) != null) {
+			server = m.next();
+			if (server != null) {
 				textField.setText(server);
 			} else {
 				JOptionPane.showMessageDialog(null, "no next");
 			}
-		}
 
-		else if (e.getSource().equals(prevButton)) {
-			if ((server = m.prev()) != null) {
+
+		} else if (e.getSource().equals(prevButton)) {
+			server = m.prev();
+			if (server != null) {
 				textField.setText(server);
 			} else {
 				JOptionPane.showMessageDialog(null, "no prev");
