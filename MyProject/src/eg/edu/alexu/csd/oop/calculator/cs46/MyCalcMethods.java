@@ -55,8 +55,8 @@ public class MyCalcMethods implements Calculator {
     private Integer pointerint;
 
     @Override
-	public final void input(final String s) {
-	this.s = s;
+	public final void input(final String s1) {
+	this.s = s1;
 	if (getResult() != null || s == "null") {
 	    if (count == s("4")) {
 		ls.removeFirst();
