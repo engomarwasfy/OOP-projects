@@ -13,199 +13,205 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
 import eg.edu.alexu.csd.oop.calculator.Calculator;
+
 /**
 *
 */
 public class MyCalcMethods implements Calculator {
-/**
-*
-*/
-    private File fout;
-    /**
-    *
-    */
-    private String s1 = null;
-    /**
-    *
-    */
-    private String result;
-    /**
-    *
-    */
-    private String server;
-    /**
-    *
-    */
-    private LinkedList<String> ls = new LinkedList<String>();
-    /**
-    *
-    */
-    private int count = -1;
-    /**
-    *
-    */
-    private int pointer = -1;
-    /**
-    *
-    */
-    private Integer countint;
-    /**
-    *
-    */
-    private Integer pointerint;
+	/**
+	*
+	*/
+	private File fout;
+	/**
+	*
+	*/
+	private String s1 = null;
+	/**
+	*
+	*/
+	private String result;
+	/**
+	*
+	*/
+	private String server;
+	/**
+	*
+	*/
+	private LinkedList<String> ls = new LinkedList<String>();
+	/**
+	*
+	*/
+	private int count = -1;
+	/**
+	*
+	*/
+	private int pointer = -1;
+	/**
+	*
+	*/
+	private Integer countint;
+	/**
+	*
+	*/
+	private Integer pointerint;
 
-    @Override
+	@Override
 	public final void input(final String s) {
-	this.s1 = s;
-	if (getResult() != null || s == "null") {
-	    if (count == s("4")) {
-		ls.removeFirst();
-		ls.addLast(s);
-		pointer = count;
-	    } else {
-		ls.addLast(s);
-		count++;
-		pointer = count;
-	    }
+		this.s1 = s;
+		if (getResult() != null || s == "null") {
+			if (count == s("4")) {
+				ls.removeFirst();
+				ls.addLast(s);
+				pointer = count;
+			} else {
+				ls.addLast(s);
+				count++;
+				pointer = count;
+			}
+		}
+
 	}
 
-    }
-
-    @Override
+	@Override
 	public final String getResult() {
 
-	ScriptEngineManager mgr = new ScriptEngineManager();
-	ScriptEngine engine = mgr.getEngineByName("JavaScript");
-	try {
-		current();
-	    result = (engine.eval(s1 + "+0.0")).toString();
-	} catch (Exception e) {
-	    throw new RuntimeException();
+		ScriptEngineManager mgr = new ScriptEngineManager();
+		ScriptEngine engine = mgr.getEngineByName("JavaScript");
+		try {
+			current();
+			result = (engine.eval(s1 + "+0.0")).toString();
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
+
+		return result;
 	}
 
-	return result;
-    }
-
-    @Override
+	@Override
 	public final String current() {
-	// TODO Auto-generated method stub
-	// will return null as initialized before if no input
-	if (pointer == -1) {
-	    return null;
+		// TODO Auto-generated method stub
+		// will return null as initialized before if no input
+		if (pointer == -1) {
+			return null;
+		}
+		s1 = ls.get(pointer);
+		return ls.get(pointer);
 	}
-	s1 = ls.get(pointer);
-	return ls.get(pointer);
-    }
 
-    @Override
+	@Override
 	public final String prev() {
-	// TODO Auto-generated method stub
-	if (pointer == 0 || pointer == -1) {
-	    return null;
-	}
-	pointer--;
-	try {
-	    server = ls.get(pointer);
-	} catch (Exception e) {
+		// TODO Auto-generated method stub
+		if (pointer == 0 || pointer == -1) {
+			return null;
+		}
+		pointer--;
+		try {
+			server = ls.get(pointer);
+		} catch (Exception e) {
 
-	    return null;
+			return null;
+		}
+		return server;
 	}
-	return server;
-    }
 
-    @Override
+	@Override
 	public final String next() {
-	// TODO Auto-generated method stub
-	if (pointer == ls.size() - 1 || pointer == -1) {
-	    return null;
-	}
-	pointer++;
-	try {
-	    server = ls.get(pointer);
-	} catch (Exception e) {
+		// TODO Auto-generated method stub
+		if (pointer == ls.size() - 1 || pointer == -1) {
+			return null;
+		}
+		pointer++;
+		try {
+			server = ls.get(pointer);
+		} catch (Exception e) {
 
-	    return null;
+			return null;
+		}
+		return server;
 	}
-	return server;
-    }
 
-    @Override
+	@Override
 	public final void save() {
-	// TODO Auto-generated method stub
-	try {
-	    countint = new Integer(count);
-	    pointerint = new Integer(pointer);
-	    writeFile(ls);
-	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+		// TODO Auto-generated method stub
+		try {
+			countint = new Integer(count);
+			pointerint = new Integer(pointer);
+			writeFile(ls);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
-    }
-
-    @Override
+	@Override
 	public final void load() {
-	// TODO Auto-generated method stub
-	try {
-	    fout = new File("out.txt");
-	    ls = readFile(fout);
-	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+		// TODO Auto-generated method stub
+		try {
+			fout = new File("out.txt");
+			ls = readFile(fout);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
-    }
-    /**
-    *@throws IOException s
-    *@param s ls
-    */
-    public final void writeFile(final LinkedList<String> s) throws IOException {
+	/**
+	 * @throws IOException
+	 *             s
+	 * @param s
+	 *            ls
+	 */
+	public final void writeFile(final LinkedList<String> s) throws IOException {
 
-	fout = new File("out.txt");
-	FileOutputStream fos = new FileOutputStream(fout, false);
-	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-	bw.append(countint.toString());
-	bw.newLine();
-	bw.append(pointerint.toString());
-	bw.newLine();
+		fout = new File("out.txt");
+		FileOutputStream fos = new FileOutputStream(fout, false);
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
+		bw.append(countint.toString());
+		bw.newLine();
+		bw.append(pointerint.toString());
+		bw.newLine();
 
-	for (int i = 0; i < s.size(); i++) {
-	    bw.append(s.get(i));
-	    bw.newLine();
-	}
-	bw.close();
-    }
-    /**
-    *@param in f
-    *@return s
-    *@throws IOException s
-    */
-    public final LinkedList<String> readFile(final File in) throws IOException {
-	LinkedList<String> ls1 = new LinkedList<String>();
-	FileInputStream fis = new FileInputStream(in);
-
-	// Construct BufferedReader from InputStreamReader
-	BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-	count = Integer.parseInt(br.readLine());
-	pointer = Integer.parseInt(br.readLine());
-
-	String line = null;
-	while ((line = br.readLine()) != null) {
-	    ls1.addLast(line);
+		for (int i = 0; i < s.size(); i++) {
+			bw.append(s.get(i));
+			bw.newLine();
+		}
+		bw.close();
 	}
 
-	br.close();
-	return ls1;
-    }
-    /**
+	/**
+	 * @param in
+	 *            f
+	 * @return s
+	 * @throws IOException
+	 *             s
+	 */
+	public final LinkedList<String> readFile(final File in) throws IOException {
+		LinkedList<String> ls1 = new LinkedList<String>();
+		FileInputStream fis = new FileInputStream(in);
+
+		// Construct BufferedReader from InputStreamReader
+		BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+		count = Integer.parseInt(br.readLine());
+		pointer = Integer.parseInt(br.readLine());
+
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			ls1.addLast(line);
+		}
+
+		br.close();
+		return ls1;
+	}
+
+	/**
 	 * @return s int
 	 * @param x
 	 *            string
 	 */
-    public final int s(final String x) {
+	public final int s(final String x) {
 		return Integer.parseInt(x);
 	}
-
-
 
 }

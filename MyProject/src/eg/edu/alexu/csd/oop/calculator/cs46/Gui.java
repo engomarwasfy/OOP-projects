@@ -16,13 +16,13 @@ import java.awt.event.ActionEvent;
 
 public class Gui implements ActionListener {
 
-/**
-*
-*/
-private MyCalcMethods m = new MyCalcMethods();
-/**
-*
-*/
+	/**
+	*
+	*/
+	private MyCalcMethods m = new MyCalcMethods();
+	/**
+	*
+	*/
 	private JFrame frame;
 	/**
 	*
@@ -47,7 +47,7 @@ private MyCalcMethods m = new MyCalcMethods();
 	/**
 	*
 	*/
-	private JButton  buttonlft, buttonrt, buttondot, buttonclear;
+	private JButton buttonlft, buttonrt, buttondot, buttonclear;
 	/**
 	*
 	*/
@@ -239,7 +239,6 @@ private MyCalcMethods m = new MyCalcMethods();
 			} else {
 				JOptionPane.showMessageDialog(null, "no next");
 			}
-
 
 		} else if (e.getSource().equals(prevButton)) {
 			server = m.prev();
