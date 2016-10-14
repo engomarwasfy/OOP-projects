@@ -61,7 +61,7 @@ private MyCalcMethods m = new MyCalcMethods();
 	 *
 	 */
 	public Gui() {
-		frame = new JFrame();
+		frame = new JFrame("Calculator");
 		frame.setBounds(s("100"), s("10"), s("646"), s("300"));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
