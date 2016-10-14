@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -132,28 +133,16 @@ public class MyCalcMethods implements Calculator {
 
 	@Override
 	public final void save() {
-		// TODO Auto-generated method stub
-		try {
-			countint = new Integer(count);
-			pointerint = new Integer(pointer);
-			writeFile(ls);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		countint = new Integer(count);
+		pointerint = new Integer(pointer);
+		writeFile(ls);
 
 	}
 
 	@Override
 	public final void load() {
-		// TODO Auto-generated method stub
-		try {
-			fout = new File("out.txt");
-			ls = readFile(fout);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		fout = new File("out.txt");
+		ls = readFile(fout);
 
 	}
 
@@ -163,21 +152,29 @@ public class MyCalcMethods implements Calculator {
 	 * @param s
 	 *            ls
 	 */
-	public final void writeFile(final LinkedList<String> s) throws IOException {
-
-		fout = new File("out.txt");
-		FileOutputStream fos = new FileOutputStream(fout, false);
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-		bw.append(countint.toString());
-		bw.newLine();
-		bw.append(pointerint.toString());
-		bw.newLine();
-
-		for (int i = 0; i < s.size(); i++) {
-			bw.append(s.get(i));
+	public final void writeFile(final LinkedList<String> s) {
+		try {
+			fout = new File("out.txt");
+			FileOutputStream fo = new FileOutputStream(fout, false);
+			OutputStreamWriter x = new OutputStreamWriter(fo);
+			BufferedWriter bw = new BufferedWriter(x);
+			bw.append(countint.toString());
 			bw.newLine();
+			bw.append(pointerint.toString());
+			bw.newLine();
+
+			for (int i = 0; i < s.size(); i++) {
+				bw.append(s.get(i));
+				bw.newLine();
+			}
+			bw.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		bw.close();
 	}
 
 	/**
@@ -187,21 +184,34 @@ public class MyCalcMethods implements Calculator {
 	 * @throws IOException
 	 *             s
 	 */
-	public final LinkedList<String> readFile(final File in) throws IOException {
+	public final LinkedList<String> readFile(final File in) {
 		LinkedList<String> ls1 = new LinkedList<String>();
-		FileInputStream fis = new FileInputStream(in);
+		try {
+			FileInputStream fis = new FileInputStream(in);
 
-		// Construct BufferedReader from InputStreamReader
-		BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-		count = Integer.parseInt(br.readLine());
-		pointer = Integer.parseInt(br.readLine());
+			// Construct BufferedReader from InputStreamReader
+			InputStreamReader x = new InputStreamReader(fis);
+			BufferedReader br = new BufferedReader(x);
+			count = Integer.parseInt(br.readLine());
+			pointer = Integer.parseInt(br.readLine());
 
-		String line = null;
-		while ((line = br.readLine()) != null) {
-			ls1.addLast(line);
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				ls1.addLast(line);
+			}
+
+			br.close();
+			return ls1;
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		br.close();
 		return ls1;
 	}
 
