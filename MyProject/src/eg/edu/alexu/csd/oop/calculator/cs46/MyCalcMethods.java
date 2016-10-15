@@ -150,7 +150,7 @@ public class MyCalcMethods implements Calculator {
 	 * @throws IOException
 	 *             s
 	 * @param s
-	 *            ls
+	 *            
 	 */
 	public final void writeFile(final LinkedList<String> s) {
 		try {

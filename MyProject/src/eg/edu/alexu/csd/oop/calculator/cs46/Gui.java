@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 
 /**
@@ -174,6 +175,7 @@ public class Gui implements ActionListener {
 		frame.getContentPane().add(buttonclear);
 		buttonclear.addActionListener(this);
 		frame.setVisible(true);
+		frame.setResizable(false);
 	}
 
 	// ++++++++++++++++++++++++++++++++
@@ -224,7 +226,7 @@ public class Gui implements ActionListener {
 				label.setText(m.getResult());
 			} catch (Exception e1) {
 				String s = "wrong expression";
-				JOptionPane.showMessageDialog(null, "s");
+				JOptionPane.showMessageDialog(null, s);
 			}
 
 		} else if (e.getSource().equals(btnSave)) {
