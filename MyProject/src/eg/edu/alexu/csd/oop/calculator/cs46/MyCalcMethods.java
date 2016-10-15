@@ -13,7 +13,6 @@ import java.util.LinkedList;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-import org.w3c.dom.ls.LSException;
 
 import eg.edu.alexu.csd.oop.calculator.Calculator;
 
@@ -151,8 +150,7 @@ public class MyCalcMethods implements Calculator {
 	/**
 	 * @throws IOException
 	 *             s
-	 * @param s
-	 *            
+	 * @param s s
 	 */
 	public final void writeFile(final LinkedList<String> s) {
 		try {
