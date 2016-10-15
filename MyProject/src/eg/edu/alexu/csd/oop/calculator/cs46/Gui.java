@@ -226,6 +226,7 @@ public class Gui implements ActionListener {
 				label.setText(m.getResult());
 			} catch (Exception e1) {
 				String s = "wrong expression";
+				m.clear();
 				JOptionPane.showMessageDialog(null, s);
 			}
 

@@ -13,6 +13,8 @@ import java.util.LinkedList;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
+import org.w3c.dom.ls.LSException;
+
 import eg.edu.alexu.csd.oop.calculator.Calculator;
 
 /**
@@ -223,5 +225,12 @@ public class MyCalcMethods implements Calculator {
 	public final int s(final String x) {
 		return Integer.parseInt(x);
 	}
+	/**
+	 *
+	 */
+	public final void clear() {
+		ls.removeLast();
+	}
+	}
 
-}
+
