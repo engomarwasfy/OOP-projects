@@ -10,25 +10,25 @@ import java.util.ArrayList;
 import eg.edu.alexu.csd.oop.paint.model.AllShape;
 
 public class LoadXml {
-	private static final String SERIALIZED_FILE_NAME="save.xml";
-private ArrayList<AllShape>shapes = new ArrayList<AllShape>();
-	public  ArrayList<AllShape> load(String dir){
-		
-		XMLDecoder decoder=null;
-		try {
-			decoder=new XMLDecoder(new BufferedInputStream(new FileInputStream(dir)));
-		} catch (Exception e) {
-			System.out.println("ERROR: File .xml not found");
-		}
-		try{
-		while(true){
-			AllShape s=(AllShape)decoder.readObject();
-		shapes.add(s);
-		}
-		}
-		catch(Exception e){
-		}
-		return shapes;
-		
+    private static final String SERIALIZED_FILE_NAME = "save.xml";
+    private ArrayList<AllShape> shapes = new ArrayList<AllShape>();
+
+    public ArrayList<AllShape> load(String dir) {
+
+	XMLDecoder decoder = null;
+	try {
+	    decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(dir)));
+	} catch (Exception e) {
+	    System.out.println("ERROR: File .xml not found");
 	}
+	try {
+	    while (true) {
+		AllShape s = (AllShape) decoder.readObject();
+		shapes.add(s);
+	    }
+	} catch (Exception e) {
+	}
+	return shapes;
+
+    }
 }
