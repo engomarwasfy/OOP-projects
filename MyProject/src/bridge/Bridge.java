@@ -13,7 +13,7 @@ import XmlMethods.Handler;
 import XmlMethods.XmlParsingMethods;
 import extractInformation.IExtractor;
 import extractInformation.UsedDataBase;
-
+/***********************/
 public class Bridge {
     Handler handler;
     IExtractor extractor;
