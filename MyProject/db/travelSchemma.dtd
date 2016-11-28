@@ -1,0 +1,5 @@
+<!ELEMENT travel (rowID)*>
+<!ELEMENT rowID (name,city,country)>
+<!ELEMENT name (#PCDATA)*>
+<!ELEMENT city (#PCDATA)*>
+<!ELEMENT country (#PCDATA)*>

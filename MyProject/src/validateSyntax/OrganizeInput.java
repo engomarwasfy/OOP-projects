@@ -22,6 +22,8 @@ public class OrganizeInput {
 	    str = str.substring(5, str.length());
 	    str = str.replaceAll(" +", "");
 	    after = after.substring(0, after.indexOf("where")).concat("where " + str);
+	    after = after.replaceAll(";", " ;");
+	    System.out.println(after);
 	}
 	return after;
 
