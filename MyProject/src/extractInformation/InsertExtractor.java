@@ -3,18 +3,18 @@ package extractInformation;
 public class InsertExtractor implements IExtractor {
 
     @Override
-    public String getDataBaseName(String[] sql) {
+    public String getDataBaseName(final String[] sql) {
 
 	return UsedDataBase.getUsedDataBase();
     }
 
     @Override
-    public String getTableName(String[] sql) {
+    public String getTableName(final String[] sql) {
 	return sql[2];
     }
 
     @Override
-    public String[] getCol(String[] sql) {
+    public String[] getCol(final String[] sql) {
 	if (sql[3].equalsIgnoreCase("values")) {
 	    return null;
 	} else {
@@ -24,9 +24,9 @@ public class InsertExtractor implements IExtractor {
     }
 
     @Override
-    public String[] getData(String[] sql) {
+    public String[] getData(final String[] sql) {
 	if (sql[3].equalsIgnoreCase("values")) {
-	    return sql[5].split(",");
+	    return sql[5].replaceAll("'", " ").split(",");
 	} else {
 	    return sql[8].split(",");
 	}
@@ -34,7 +34,7 @@ public class InsertExtractor implements IExtractor {
     }
 
     @Override
-    public String getCondition(String[] sql) {
+    public String getCondition(final String[] sql) {
 	return null;
     }
 
