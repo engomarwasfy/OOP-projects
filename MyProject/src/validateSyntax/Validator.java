@@ -21,6 +21,9 @@ public abstract class Validator {
 
 	}
 	public boolean isValidCondition(final String word){
+		if(word.contains("AND")||word.contains("OR")||word.contains("Not")) {
+			return true;
+		}
 		if(word.equals("'true'")) {
 			return true;
 		}

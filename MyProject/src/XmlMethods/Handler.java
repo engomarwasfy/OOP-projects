@@ -41,15 +41,17 @@ public class Handler implements IDBMS {
 
   @Override
   public String[][] select(final File xml, final String[] col,final String condition) {
-    final XmlParsingMethods x = new XmlParsingMethods();
-    if (condition == null && col.length == 1 && col[0].equals("*")) {
-      return select.selectAll(xml);
-    }
-
+    
+	  final XmlParsingMethods x = new XmlParsingMethods();
     final ArrayList<Integer> index = x.parseCondition(xml, condition);
     final int[] indexes = new int[index.size()];
     for (int i = 0; i < index.size(); i++) {
       indexes[i] = index.get(i);
+    }
+    
+    if (condition == null && col.length == 1 && col[0].equals("*")) {
+    	String []cols = SchemaFile.read(UsedDataBase.getUsedDataBase(), xml.getName().substring(0, xml.getName().indexOf('.'))).split(",");
+      return select.select(xml,cols , indexes);
     }
     if(condition != null && col.length == 1 && col[0].equals("*")){
       final String tableName = xml.getName().substring(0, xml.getName().indexOf('.'));

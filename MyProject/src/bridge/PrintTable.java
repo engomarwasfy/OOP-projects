@@ -9,7 +9,12 @@ public class PrintTable {
         .split(",");
   }
 
-  public void show(final String table[][], final String tableName , String []data) {
+  public void show( String table[][], final String tableName , String []data) {
+	  for (int i = 0; i < table.length; i++) {
+		for (int j = 0; j < table[i].length; j++) {
+			table[i][j] = table[i][j].replaceAll("_", " ");
+		}
+	}
     if (data[0].equals("*")) {
       data = getColFromSchemma(tableName);
     }

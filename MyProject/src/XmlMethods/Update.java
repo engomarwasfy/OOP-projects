@@ -55,6 +55,14 @@ public class Update {
 				for (int i = 0; i < list.getLength(); i++) {
 					for (int k = 0; k < sets.length; k++) {
 						final String[] arr = sets[k].split("=");
+						if(!isNumber(arr[1])) {
+							if(arr[1].charAt(0)=='\''&&arr[1].charAt(arr[1].length()-1)=='\''){
+								arr[1]=arr[1].substring(1, arr[1].length()-1);
+							} else{
+								throw new RuntimeException();
+							}
+							
+						}
 						if(checkColFound(xml.getName().substring(0, xml.getName().indexOf('.')), arr[0]) == -1){
 							throw new RuntimeException();
 						}
