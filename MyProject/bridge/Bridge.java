@@ -12,7 +12,9 @@ public class Bridge {
   Handler handler;
   IExtractor extractor;
   PrintTable print;
-
+/**
+ * bridge.
+ */
   public Bridge() {
     handler = new Handler();
     print = new PrintTable();
