@@ -1,5 +1,6 @@
 package XmlMethods;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -28,7 +29,7 @@ public class CreateTable {
 	icBuilder = icFactory.newDocumentBuilder();
 	final Document doc = icBuilder.newDocument();
 	final DOMSource source = new DOMSource(doc);
-	final StreamResult n = new StreamResult(dataBaseName + "\\" + xmlName + ".xml");
+	final StreamResult n = new StreamResult(dataBaseName + File.separator + xmlName + ".xml");
 	Transformer transformer;
 	transformer = TransformerFactory.newInstance().newTransformer();
 	Element mainRootElement;

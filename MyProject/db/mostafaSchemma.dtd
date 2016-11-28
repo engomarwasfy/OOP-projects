@@ -1,4 +1,4 @@
-<!ELEMENT travel (rowID)*>
+<!ELEMENT mostafa (rowID)*>
 <!ELEMENT rowID (name,city,country)>
 <!ELEMENT name (#PCDATA)*>
 <!ELEMENT city (#PCDATA)*>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE mostafa SYSTEM "mostafaSchemma.dtd" >
+<mostafa >
+<rowID>
+<name>varchar</name>
+<city>varchar</city>
+<country>varchar</country>
+</rowID>
+</mostafa>
