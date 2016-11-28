@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE travel SYSTEM "travelSchemma.dtd">
+<travel>
+<rowID>
+<name type="varchar">dummy</name>
+<city type="varchar">dummy</city>
+<country type="varchar">dummy</country>
+</rowID>
+</travel>

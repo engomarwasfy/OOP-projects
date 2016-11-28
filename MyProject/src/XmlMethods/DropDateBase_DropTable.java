@@ -10,31 +10,21 @@ import java.nio.file.Path;
 import extractInformation.UsedDataBase;
 
 public class DropDateBase_DropTable {
-  public static void delete(final File xmlFile) {
-    final Path path = xmlFile.toPath();
-    try {
-      if (xmlFile.isDirectory()) {
-        for (final File c : xmlFile.listFiles()) {
-          Files.delete(c.toPath());
+    public static void delete(final File xmlFile) throws IOException {
+	final Path path = xmlFile.toPath();
 
-        }
-        Files.delete(path);
+	if (xmlFile.isDirectory()) {
+	    for (final File c : xmlFile.listFiles()) {
+		Files.delete(c.toPath());
 
-      } else if (xmlFile.getName().contains(".xml")) {
-        Files.delete(path);
-        Files
-            .delete(
-                new File(UsedDataBase.getUsedDataBase() + File.separatorChar
-                    + xmlFile.getName().substring(0,
-                        xmlFile.getName().indexOf('.'))
-                    + "Schemma.dtd").toPath());
-      }
-    } catch (final NoSuchFileException x) {
-    	 System.out.println("sql command failed");
-    } catch (final DirectoryNotEmptyException x) {
-    	 System.out.println("sql command failed");
-    } catch (final IOException x) {
-    	 System.out.println("sql command failed");
+	    }
+	    Files.delete(path);
+
+	} else if (xmlFile.getName().contains(".xml")) {
+	    Files.delete(path);
+	    Files.delete(new File(UsedDataBase.getUsedDataBase() + File.separatorChar
+		    + xmlFile.getName().substring(0, xmlFile.getName().indexOf('.')) + "Schemma.dtd").toPath());
+	}
+
     }
-  }
 }

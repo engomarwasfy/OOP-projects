@@ -59,13 +59,16 @@ public class Gui extends JFrame {
      * this is label
      */
     private static Label label = new Label("omar wasfy  & shaban sheta");
+
     /**
      * this is label getter
+     * 
      * @return label returns label
      */
     public static Label getLabel() {
 	return label;
     }
+
     /**
      * run Gui
      */
@@ -490,9 +493,9 @@ public class Gui extends JFrame {
 
     }
 
-    
     /**
-     * @param args s
+     * @param args
+     *            s
      */
     public static void main(final String[] args) {
 
@@ -505,5 +508,4 @@ public class Gui extends JFrame {
 	    }
 	});
     }
-    }
-
+}

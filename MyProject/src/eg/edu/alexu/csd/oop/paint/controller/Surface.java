@@ -53,7 +53,7 @@ public class Surface extends JPanel {
     private AllShape selectedShape;
     /**
      * 
-     *default color
+     * default color
      */
     private Color fillColor = Color.WHITE;
     /**
@@ -66,8 +66,10 @@ public class Surface extends JPanel {
      *
      */
     private ArrayList<AllShape> selectedShapes;
+
     /**
      * getter
+     * 
      * @retuurn selectedshape s
      */
 
