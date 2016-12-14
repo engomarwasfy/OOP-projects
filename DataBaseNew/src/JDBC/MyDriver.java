@@ -9,17 +9,17 @@ import java.sql.SQLFeatureNotSupportedException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-public class JDriver implements Driver {
+public class MyDriver implements Driver {
     
     static {
         try {
-            java.sql.DriverManager.registerDriver(new JDriver());
+            java.sql.DriverManager.registerDriver(new MyDriver());
         } catch (SQLException E) {
             throw new RuntimeException("Can't register driver!");
         }
     }
     
-    public JDriver(){
+    public MyDriver(){
 	
     }
     @Override
