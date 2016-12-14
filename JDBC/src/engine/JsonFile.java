@@ -39,7 +39,7 @@ public class JsonFile implements IFile {
 	arr = new String[(int) sizeOfLinkedlist][d.size()];
 	ArrayList<String> row = new ArrayList<>();
 	final ArrayList<ArrayList<String>> table = new ArrayList<ArrayList<String>>();
-	for (Integer i = 0; i < sizeOfLinkedlist; i++) {
+	for (Integer i = 2; i < sizeOfLinkedlist; i++) {
 	    final JSONArray Data = (JSONArray) jsonObject1.get(i.toString());
 
 	    final Iterator<String> iterator = Data.iterator();
@@ -48,7 +48,7 @@ public class JsonFile implements IFile {
 		arr[i][j] = iterator.next();
 	    }
 	}
-	for (int j = 0; j < arr.length; j++) {
+	for (int j = 2; j < arr.length; j++) {
 	    row = new ArrayList<>();
 	    for (int j2 = 0; j2 < arr[0].length; j2++) {
 		row.add(arr[j][j2]);
@@ -72,19 +72,32 @@ public class JsonFile implements IFile {
 	    e1.printStackTrace();
 	}
 	Integer counter = 0;
-	JSONArray temp;
-	obj.put("num", new Integer(data.size()));
-	ArrayList<String> row = new ArrayList();
-	for (int i = 0; i < data.size(); i++) {
-	    temp = new JSONArray();
-	    row = data.get(i);
-	    for (int j = 0; j < row.size(); j++) {
-		temp.add(row.get(j));
-	    }
-	    obj.put(convertIntegerToString(counter).toString(), temp);
-	    counter++;
+	JSONArray temp  = new JSONArray();
+	for (int i = 0; i < cols.size(); i++) {
+	    temp.add(cols.get(i));
 	}
-	try {
+	obj.put(convertIntegerToString(counter), temp);
+	temp  = new JSONArray();
+	for (int i = 0; i < types.size(); i++) {
+	    temp.add(types.get(i));
+	}
+	counter++;
+	obj.put(convertIntegerToString(counter), temp);
+	if(data.size() > 0){
+	    obj.put("num", new Integer(data.size() + 2));
+		ArrayList<String> row = new ArrayList();
+		for (int i = 0; i < data.size(); i++) {
+		    temp = new JSONArray();
+		    row = data.get(i);
+		    for (int j = 0; j < row.size(); j++) {
+			temp.add(row.get(j));
+		    }
+		    counter++;
+		    obj.put(convertIntegerToString(counter).toString(), temp);
+		}
+
+	}
+		try {
 	    file.write(obj.toString());
 	} catch (final IOException e) {
 	    e.printStackTrace();
