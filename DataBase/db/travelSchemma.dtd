@@ -1,5 +1,0 @@
-<!ELEMENT db(travel)*>
-<!ELEMENT customers (name,city,country)>
-<!ELEMENT name (#PCDATA)*>
-<!ELEMENT city (#PCDATA)*>
-<!ELEMENT country (#PCDATA)*>
