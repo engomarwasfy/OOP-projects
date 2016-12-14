@@ -155,7 +155,12 @@ public class JResultset implements ResultSet {
     if (arr[cursor][columnIndex - 1] == null) {
       return null;
     }
-    return (Date) new java.util.Date(arr[cursor][columnIndex - 1]);
+    if (arr[cursor][columnIndex - 1].equals("null")) {
+	      return null;
+	    }
+    String []DateArray = (arr[cursor][columnIndex - 1]).split("-");
+    
+    return (Date) new Date(Integer.parseInt(DateArray[0]),Integer.parseInt(DateArray[1]),Integer.parseInt(DateArray[2]));
   }
 
   @Override
@@ -176,10 +181,15 @@ public class JResultset implements ResultSet {
       final SQLException ex = new SQLException("data access error , error at getDate(String columnLabel)");
       throw ex;
     }
+    if (arr[cursor][0].equals("null")) {
+	      return null;
+	    }
     if (arr[cursor][colIndex - 1] == null) {
       return null;
     }
-    return (Date) new java.util.Date(arr[cursor][colIndex - 1]);
+String []DateArray = (arr[cursor][colIndex - 1]).split("-");
+    
+    return (Date) new Date(Integer.parseInt(DateArray[0]),Integer.parseInt(DateArray[1]),Integer.parseInt(DateArray[2]));
   }
 
   @Override

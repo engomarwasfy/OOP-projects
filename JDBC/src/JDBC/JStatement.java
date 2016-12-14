@@ -147,7 +147,16 @@ public class JStatement implements Statement {
 	}
 	if (arr[0].equalsIgnoreCase("select")) {
 	   lastSelect = arg0;
-	   return true;
+	   ResultSet result = executeQuery(arg0);
+	   int cunter = 0 ;
+	   while(result.next()) {
+	       cunter++;
+	   }
+	   if(cunter > 0) {
+	       return true;
+	   } else {
+	       return false;
+	   }
 	}
 	return false;
     }
@@ -223,7 +232,6 @@ public class JStatement implements Statement {
 	    colNames = fileWriter.getcols(UsedDataBase.getUsedDataBase(), tablename);
 	    colTypes = fileWriter.getcolsTypes(UsedDataBase.getUsedDataBase(), tablename);
 	} catch (ParserConfigurationException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	JResultset resultset = new JResultset(result, colNames, tablename, colTypes);

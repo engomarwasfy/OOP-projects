@@ -56,7 +56,10 @@ public abstract class Validator {
 	return false;
     }
 
-    public boolean isIntNumber(final String word) {
+    public boolean isIntNumber(String word) {
+	if(word.charAt(0) == '-') {
+	   word= word.replaceAll("-", "");
+	}
 	return Pattern.matches("[+-]^[0-9]*$", word);
 
     }

@@ -19,6 +19,7 @@ import org.xml.sax.SAXException;
 import XmlMethods.SchemaFile;
 import eval.eval;
 import extractInformation.UsedDataBase;
+import validateSyntax.Validator;
 
 public class XmlParsingMethods {
 
@@ -96,7 +97,15 @@ public class XmlParsingMethods {
 		arr[1] = arr[1].substring(1, arr[1].length() - 1);
 	    }
 	    for (int i = 0; i < data.size(); i++) {
-		if (data.get(i).get(indexOfCol).compareTo(arr[1]) >= 1) {
+		if(isIntNumber(arr[1])) {
+		    if(toInt(data.get(i).get(indexOfCol)) > toInt(arr[1])) {
+			indexes.add(i);
+		    }
+		} else if (isFloatNumber(arr[1])) {
+		    if(toFloat(data.get(i).get(indexOfCol)) > toFloat(arr[1])) {
+			indexes.add(i);
+		    }
+		} else if (data.get(i).get(indexOfCol).compareTo(arr[1]) >= 1) {
 		    indexes.add(i);
 		}
 	    }
@@ -119,7 +128,15 @@ public class XmlParsingMethods {
 		arr[1] = arr[1].substring(1, arr[1].length() - 1);
 	    }
 	    for (int i = 0; i < data.size(); i++) {
-		if (data.get(i).get(indexOfCol).compareTo(arr[1]) <= -1) {
+		if(isIntNumber(arr[1])) {
+		    if(toInt(data.get(i).get(indexOfCol)) < toInt(arr[1])) {
+			indexes.add(i);
+		    }
+		} else if (isFloatNumber(arr[1])) {
+		    if(toFloat(data.get(i).get(indexOfCol)) < toFloat(arr[1])) {
+			indexes.add(i);
+		    }
+		} else if (data.get(i).get(indexOfCol).compareTo(arr[1]) <= -1) {
 		    indexes.add(i);
 		}
 	    }
@@ -141,7 +158,15 @@ public class XmlParsingMethods {
 		arr[1] = arr[1].substring(1, arr[1].length() - 1);
 	    }
 	    for (int i = 0; i < data.size(); i++) {
-		if (data.get(i).get(indexOfCol).compareTo(arr[1]) == 0) {
+		if(isIntNumber(arr[1])) {
+		    if(toInt(data.get(i).get(indexOfCol)) == toInt(arr[1])) {
+			indexes.add(i);
+		    }
+		} else if (isFloatNumber(arr[1])) {
+		    if(toFloat(data.get(i).get(indexOfCol)) == toFloat(arr[1])) {
+			indexes.add(i);
+		    }
+		} else if (data.get(i).get(indexOfCol).compareTo(arr[1]) == 0) {
 		    indexes.add(i);
 		}
 	    }
@@ -152,5 +177,24 @@ public class XmlParsingMethods {
 
     }
     /******************************************************************************************************/
+    public boolean isIntNumber( String word) {
+	if(word.charAt(0) == '-') {
+	    word= word.replaceAll("-", "");
+	}
+	return Pattern.matches("^[0-9]*$", word);
 
+    }
+
+    public boolean isFloatNumber(final String word) {
+	return Pattern.matches("[+-]?([0-9]*[.])?[0-9]+", word);
+
+    }
+    
+    public int toInt(String word) {
+	return Integer.parseInt(word);
+    }
+    
+    public float toFloat(String word) {
+	return (float) Double.parseDouble(word);
+    }
 }
