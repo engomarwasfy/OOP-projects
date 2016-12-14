@@ -1,4 +1,4 @@
-package JDBC;
+package thejdbc;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.util.Properties;
 import org.junit.Assert;
 import org.junit.Test;
 
-import JDBC.TestRunner;
+import thejdbc.TestRunner;
 
 /**
  * Notes: 

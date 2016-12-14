@@ -1,4 +1,4 @@
-package JDBC;
+package thejdbc;
 
 import java.sql.Date;
 import java.sql.SQLException;

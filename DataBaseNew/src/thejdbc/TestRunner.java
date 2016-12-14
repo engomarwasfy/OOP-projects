@@ -1,4 +1,4 @@
-package JDBC;
+package thejdbc;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;

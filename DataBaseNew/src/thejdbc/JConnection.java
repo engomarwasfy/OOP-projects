@@ -1,4 +1,4 @@
-package JDBC;
+package thejdbc;
 
 import java.sql.Array;
 import java.sql.Blob;
