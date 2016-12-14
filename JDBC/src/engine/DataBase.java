@@ -27,7 +27,7 @@ import org.w3c.dom.Element;
 
 import XmlMethods.SchemaFile;
 import extractInformation.UsedDataBase;
-
+//hello
 public class DataBase implements ImethodOfDataBase {
     private String databaseName;
     private ArrayList<String> tablesNames = new ArrayList<String>();
