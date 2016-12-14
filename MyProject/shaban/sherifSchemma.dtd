@@ -1,5 +1,0 @@
-<!ELEMENT shaban(sherif)*>
-<!ELEMENT sherif (name,city,country)>
-<!ELEMENT name (#PCDATA)*>
-<!ELEMENT city (#PCDATA)*>
-<!ELEMENT country (#PCDATA)*>

@@ -2,10 +2,10 @@ package Controller;
 
 import java.util.Scanner;
 
-import bridge.Bridge;
-import bridge.Director;
-import validateSyntax.OrganizeInput;
-import validateSyntax.Parser;
+import eg.edu.alexu.csd.oop.jdbc.bridge.cs42.Bridge;
+import eg.edu.alexu.csd.oop.jdbc.bridge.cs42.Director;
+import eg.edu.alexu.csd.oop.jdbc.validateSyntax.cs42.OrganizeInput;
+import eg.edu.alexu.csd.oop.jdbc.validateSyntax.cs42.Parser;
 
 public class Main {
     public static void main(final String[] args) {
@@ -23,7 +23,7 @@ public class Main {
 			final Director director = new Director();
 			director.direct(arr[0].toLowerCase());
 			final Bridge bridge = new Bridge();
-			bridge.dirct(director, arr);
+			bridge.dirct(director, arr,"xmldb");
 		    }
 		    if (s.validate(arr)) {
 			System.out.println("Syntax is valid");

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.Buffer;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,19 +14,19 @@ import javax.xml.transform.TransformerException;
 
 import org.xml.sax.SAXException;
 
-import bridge.Bridge;
-import bridge.Director;
-import validateSyntax.OrganizeInput;
-import validateSyntax.Parser;
+import eg.edu.alexu.csd.oop.jdbc.bridge.cs42.Bridge;
+import eg.edu.alexu.csd.oop.jdbc.bridge.cs42.Director;
+import eg.edu.alexu.csd.oop.jdbc.validateSyntax.cs42.OrganizeInput;
+import eg.edu.alexu.csd.oop.jdbc.validateSyntax.cs42.Parser;
 
 public class FileCommand {
     public static void main(String[] args)
-	    throws IOException, TransformerException, SAXException, ParserConfigurationException {
+	    throws IOException, TransformerException, SAXException, ParserConfigurationException, SQLException {
 	FileCommand.executeCommands(new File("SQL.txt"));
     }
 
     public static void executeCommands(File file)
-	    throws IOException, TransformerException, SAXException, ParserConfigurationException {
+	    throws IOException, TransformerException, SAXException, ParserConfigurationException, SQLException {
 
 	BufferedReader br = null;
 	br = new BufferedReader(new FileReader(file));
@@ -43,7 +44,7 @@ public class FileCommand {
 		final Director director = new Director();
 		director.direct(arr1[0].toLowerCase());
 		final Bridge bridge = new Bridge();
-		bridge.dirct(director, arr1);
+		bridge.dirct(director, arr1,"xmldb");
 	    }
 	}
     }
