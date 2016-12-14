@@ -1,0 +1,14 @@
+CREATE DATABASE db;
+USE DATABASE db;
+CREATE TABLE travel(name  varchar,  city  varchar ,   country  varchar);
+INSERT INTO travel( name, city, country) VALUES ( sherif, alex, egypt );
+INSERT INTO travel( name, city, country) VALUES ( mohammed, alex, usa );
+INSERT INTO travel( name, city, country) VALUES ( ahmed, cairo, egypt  );
+INSERT INTO travel( name, city, country) VALUES  ( shahin, london, britan );
+SELECT * FROM travel;
+SELECT name FROM travel;
+SELECT name, country FROM travel WHERE country='egypt';
+SELECT name FROM travel WHERE city='alex';
+
+UPDATE travel SET name=shanan ,country=Bambozia  WHERE city='alex';
+INSERT INTO travel (city, name) VALUES (omar ,ahmed);

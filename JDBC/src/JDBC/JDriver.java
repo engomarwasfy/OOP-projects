@@ -1,4 +1,4 @@
-package jdbc;
+package JDBC;
 
 import java.io.File;
 import java.sql.Connection;
@@ -9,19 +9,17 @@ import java.sql.SQLFeatureNotSupportedException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import thejdbc.JConnection;
-
-public class MyDriver implements Driver {
+public class JDriver implements Driver {
     
     static {
         try {
-            java.sql.DriverManager.registerDriver(new MyDriver());
+            java.sql.DriverManager.registerDriver(new JDriver());
         } catch (SQLException E) {
             throw new RuntimeException("Can't register driver!");
         }
     }
     
-    public MyDriver(){
+    public JDriver(){
 	
     }
     @Override
@@ -30,7 +28,7 @@ public class MyDriver implements Driver {
 	    throw new RuntimeException();
 	}
 	String fixedxml = "jdbc:xmldb://localhost" ;
-	String fixedjson = "jdbc:jsondb://localhost" ;
+	String fixedjson = "jdbc:altdb://localhost" ;
 	if((arg0.equalsIgnoreCase(fixedxml)) || (arg0.equalsIgnoreCase(fixedjson))) {
 	    return true;
 	}

@@ -1,4 +1,4 @@
-package thejdbc;
+package JDBC;
 
 import java.io.InputStream;
 import java.io.Reader;
