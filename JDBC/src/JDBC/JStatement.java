@@ -21,7 +21,6 @@ import javax.xml.transform.TransformerException;
 
 import org.xml.sax.SAXException;
 
-import XmlMethods.SchemaFile;
 import bridge.Bridge;
 import bridge.Director;
 import bridge.ExtractorFactory;

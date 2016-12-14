@@ -25,7 +25,6 @@ import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import XmlMethods.SchemaFile;
 import extractInformation.UsedDataBase;
 //hello
 public class DataBase implements ImethodOfDataBase {

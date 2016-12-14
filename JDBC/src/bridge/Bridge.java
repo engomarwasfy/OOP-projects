@@ -20,11 +20,11 @@ import extractInformation.UsedDataBase;
 /***********************/
 public class Bridge {
     private IExtractor extractor;
-    private PrintTable print;
+   
     private XmlParsingMethods condParse;
 
     public Bridge() {
-	print = new PrintTable();
+
 	condParse = new XmlParsingMethods();
     }
 
