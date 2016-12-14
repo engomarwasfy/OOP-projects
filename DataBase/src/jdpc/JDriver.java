@@ -30,7 +30,7 @@ public class JDriver implements Driver {
 	    throw new RuntimeException();
 	}
 	String fixedxml = "jdbc:xmldb://localhost" ;
-	String fixedjson = "jdbc:altdb://localhost" ;
+	String fixedjson = "jdbc:jsondb://localhost" ;
 	if((arg0.equalsIgnoreCase(fixedxml)) || (arg0.equalsIgnoreCase(fixedjson))) {
 	    return true;
 	}
