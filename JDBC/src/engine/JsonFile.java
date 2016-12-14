@@ -80,6 +80,7 @@ public class JsonFile implements IFile {
 	temp  = new JSONArray();
 	for (int i = 0; i < types.size(); i++) {
 	    temp.add(types.get(i));
+	    System.err.println(types.get(i));
 	}
 	counter++;
 	obj.put(convertIntegerToString(counter), temp);

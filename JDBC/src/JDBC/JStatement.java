@@ -147,8 +147,9 @@ public class JStatement implements Statement {
 	}
 	if (arr[0].equalsIgnoreCase("select")) {
 	   lastSelect = arg0;
+	   return true;
 	}
-	return true;
+	return false;
     }
 
     @Override
