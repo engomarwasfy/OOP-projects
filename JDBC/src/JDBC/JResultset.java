@@ -181,7 +181,7 @@ public class JResultset implements ResultSet {
       final SQLException ex = new SQLException("data access error , error at getDate(String columnLabel)");
       throw ex;
     }
-    if (arr[cursor][0].equals("null")) {
+    if (arr[cursor][colIndex - 1].equals("null")) {
 	      return null;
 	    }
     if (arr[cursor][colIndex - 1] == null) {
