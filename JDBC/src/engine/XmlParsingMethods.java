@@ -28,7 +28,7 @@ public class XmlParsingMethods {
 	if (protocol.equalsIgnoreCase("xmldb")) {
 	    filewriter = new XmlFile();
 	} else {
-	    filewriter = new JsonFile();
+	    filewriter = new XmlFile();
 	}
     }
 

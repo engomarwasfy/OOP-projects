@@ -45,7 +45,7 @@ public class DataBase implements ImethodOfDataBase {
 	if (protocol.equalsIgnoreCase("xmldb")) {
 	    fileWriter = new XmlFile();
 	} else {
-	    fileWriter = new JsonFile();
+	    fileWriter = new XmlFile();
 	}
     }
 

@@ -26,7 +26,7 @@ import JDBC.TestRunner;
  **/
 public class SmokeTest {
 
-	private String protocol = "xmldb";
+	private String protocol = "altdb";
 	private String tmp = System.getProperty("java.io.tmpdir");
 
 	public static Class<?> getSpecifications() {

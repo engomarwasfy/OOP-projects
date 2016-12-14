@@ -40,7 +40,7 @@ public class Table implements ImethodOfTable {
 	if (protocol.equalsIgnoreCase("xmldb")) {
 	    fileWriter = new XmlFile();
 	} else {
-	    fileWriter = new JsonFile();
+	    fileWriter = new XmlFile();
 	}
     }
 
