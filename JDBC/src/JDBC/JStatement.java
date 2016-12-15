@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 
-import javax.management.RuntimeErrorException;
 import javax.swing.text.html.parser.DTD;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -25,7 +24,6 @@ import org.xml.sax.SAXException;
 import bridge.Bridge;
 import bridge.Director;
 import bridge.ExtractorFactory;
-import engine.DataBase;
 import engine.IFile;
 import engine.JsonFile;
 import engine.XmlFile;
@@ -134,17 +132,13 @@ public class JStatement implements Statement {
     @Override
     public boolean execute(String arg0) throws SQLException {
 	String[] arr = null;
-		if (arg0.trim().length() != 0) {
+	if (arg0.trim().length() != 0) {
 	    final String after = OrganizeInput.organize(arg0);
 	    arr = after.split(" ");
 	    if (s.validate(arr)) {
 		director.direct(arr[0].toLowerCase());
 		try {
 		    bridge.dirct(director, arr, protocol);
-		    if(DataBase.isDataBaseHere==true){
-			DataBase.isDataBaseHere=false;
-		    throw new  RuntimeException("The Sql Statment is "+arg0);
-		    }
 		} catch (Exception e) {
 		    final SQLException e1 = new SQLException("not valid statment");
 		    throw e1;

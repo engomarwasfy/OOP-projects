@@ -34,7 +34,6 @@ public class DataBase implements ImethodOfDataBase {
     private ArrayList<String> batch = new ArrayList<String>();
     private static DataBase instance = new DataBase();
     private IFile fileWriter = new XmlFile();
-    public static  boolean isDataBaseHere=false;
 
     private DataBase() {
     }
@@ -96,9 +95,7 @@ public class DataBase implements ImethodOfDataBase {
 	DBMSdir.mkdir();
 	final File dir = new File(DBMSdir + File.separator + databaseName);
 	if (dir.exists()) {
-	    isDataBaseHere=true;
-	   // DropDateBase.drop(databaseName);
-	    return;
+	    DropDateBase.drop(databaseName);
 	}
 	dir.mkdir();
 	File batchdir = new File(tmp + "batches");
