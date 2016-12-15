@@ -266,32 +266,33 @@ public class JStatement implements Statement {
 
     @Override
     public int executeUpdate(String sql) throws SQLException {
-	if (isClosed()) {
-	    throw new SQLException();
-	}
-	int[] result = new int[0];
-	if (sql.trim().length() != 0) {
-	    final String after = OrganizeInput.organize(sql);
-	    final String[] arr = after.split(" ");
-	    try{
-	    if (s.validate(arr)) {
-		director.direct(arr[0].toLowerCase());
-	    }
-		    result = bridge.dirct(director, arr, protocol);
-		} catch (Exception e) {
-		    final SQLException ex = new SQLException("not valid statment");
-		    throw ex;
-		}
-		if (arr[0].equalsIgnoreCase("update")) {
-		    return result.length;
-		}
-		if (arr[0].equalsIgnoreCase("insert")) {
-		    return 1;
-		}
-	    }
-	
-	updateCount += result.length;
-	return updateCount;
+	throw new SQLException(sql);
+//	if (isClosed()) {
+//	    throw new SQLException();
+//	}
+//	int[] result = new int[0];
+//	if (sql.trim().length() != 0) {
+//	    final String after = OrganizeInput.organize(sql);
+//	    final String[] arr = after.split(" ");
+//	    try{
+//	    if (s.validate(arr)) {
+//		director.direct(arr[0].toLowerCase());
+//	    }
+//		    result = bridge.dirct(director, arr, protocol);
+//		} catch (Exception e) {
+//		    final SQLException ex = new SQLException("not valid statment");
+//		    throw ex;
+//		}
+//		if (arr[0].equalsIgnoreCase("update")) {
+//		    return result.length;
+//		}
+//		if (arr[0].equalsIgnoreCase("insert")) {
+//		    return 1;
+//		}
+//	    }
+//	
+//	updateCount += result.length;
+//	return updateCount;
     }
 
     @Override
