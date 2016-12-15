@@ -18,7 +18,7 @@ public interface IFile {
 
     public void write(ArrayList<ArrayList<String>> data, String dataBaseName, String tableName, ArrayList<String> cols,
 	    ArrayList<String> types) throws ParserConfigurationException, TransformerConfigurationException,
-	    TransformerFactoryConfigurationError;
+	    TransformerFactoryConfigurationError, SQLException;
 
     public ArrayList<String> getcols(String dataBaseName, String tableName) throws ParserConfigurationException, SQLException;
 

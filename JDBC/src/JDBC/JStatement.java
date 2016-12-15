@@ -34,7 +34,7 @@ import validateSyntax.Parser;
 
 public class JStatement implements Statement {
 
-    private String lastSelect = "" ;
+    private String lastSelect = "";
     private Parser s = new Parser();
     private Director director = new Director();
     private Bridge bridge = new Bridge();
@@ -42,7 +42,8 @@ public class JStatement implements Statement {
     private static String protocol = "xmldb";
     private static IFile fileWriter = new XmlFile();
     private static int updateCount = 0;
-    private static int QueryTimeout = 0 ;
+    private static int QueryTimeout = 0;
+
     private JStatement() {
 
     }
@@ -90,14 +91,16 @@ public class JStatement implements Statement {
 		load.add(scan);
 	    }
 	} catch (IOException e) {
-	    e.printStackTrace();
+	    final SQLException e1 = new SQLException("not valid statment");
+	    throw e1;
 	}
 	// add
 	PrintWriter out = null;
 	try {
 	    out = new PrintWriter(batch);
 	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
+	    final SQLException e1 = new SQLException("not valid statment");
+	    throw e1;
 	}
 	for (int i = 0; i < load.size(); i++) {
 	    out.println(load.get(i));
@@ -115,7 +118,8 @@ public class JStatement implements Statement {
 	try {
 	    out = new PrintWriter(batch);
 	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
+	    final SQLException e1 = new SQLException("not valid statment");
+	    throw e1;
 	}
 	out.close();
     }
@@ -144,18 +148,23 @@ public class JStatement implements Statement {
 		throw e;
 	    }
 	}
-	if (arr[0].equalsIgnoreCase("select")) {
-	   lastSelect = arg0;
-	   ResultSet result = executeQuery(arg0);
-	   int cunter = 0 ;
-	   while(result.next()) {
-	       cunter++;
-	   }
-	   if(cunter > 0) {
-	       return true;
-	   } else {
-	       return false;
-	   }
+	try {
+	    if (arr[0].equalsIgnoreCase("select")) {
+		lastSelect = arg0;
+		ResultSet result = executeQuery(arg0);
+		int cunter = 0;
+		while (result.next()) {
+		    cunter++;
+		}
+		if (cunter > 0) {
+		    return true;
+		} else {
+		    return false;
+		}
+	    }
+	} catch (Exception e) {
+	    final SQLException e1 = new SQLException("not valid statment");
+	    throw e1;
 	}
 	return false;
     }
@@ -186,14 +195,16 @@ public class JStatement implements Statement {
 				    mostafa.add(update[i]);
 				}
 			    } catch (TransformerException | SAXException | ParserConfigurationException e) {
-				e.printStackTrace();
+				final SQLException e1 = new SQLException("not valid statment");
+				throw e1;
 			    }
 			}
 		    }
 		}
 	    }
 	} catch (IOException e) {
-	    e.printStackTrace();
+	    final SQLException e1 = new SQLException("not valid statment");
+	    throw e1;
 	}
 	LinkedHashSet<Integer> omar = new LinkedHashSet<Integer>();
 	omar.addAll(mostafa);
@@ -223,7 +234,8 @@ public class JStatement implements Statement {
 	try {
 	    result = bridge.dirct2(director, arr, protocol);
 	} catch (TransformerException | SAXException | IOException | ParserConfigurationException e) {
-	    e.printStackTrace();
+	    final SQLException e1 = new SQLException("not valid statment");
+	    throw e1;
 	}
 	ArrayList<String> colNames = null;
 	ArrayList<String> colTypes = null;
@@ -231,7 +243,22 @@ public class JStatement implements Statement {
 	    colNames = fileWriter.getcols(UsedDataBase.getUsedDataBase(), tablename);
 	    colTypes = fileWriter.getcolsTypes(UsedDataBase.getUsedDataBase(), tablename);
 	} catch (ParserConfigurationException e) {
-	    e.printStackTrace();
+	    final SQLException e1 = new SQLException("not valid statment");
+	    throw e1;
+	}
+	if (arr[0].equalsIgnoreCase("select")) {
+	    String[] cols = formation.getCol(arr);
+	    if (!cols[0].equals("*")) {
+		ArrayList<String> colsNames = new ArrayList<String>();
+		ArrayList<String> colsTypes = new ArrayList<String>();
+		for (int i = 0; i < cols.length; i++) {
+		    int index = colNames.indexOf(cols[i]);
+		    colsNames.add(colNames.get(index));
+		    colsTypes.add(colTypes.get(index));
+		}
+		JResultset resultset = new JResultset(result, colsNames, tablename, colsTypes);
+		return resultset;
+	    }
 	}
 	JResultset resultset = new JResultset(result, colNames, tablename, colTypes);
 	return resultset;
@@ -283,16 +310,15 @@ public class JStatement implements Statement {
 
     @Override
     public ResultSet getResultSet() throws SQLException {
-	if(lastSelect.length() > 0) {
+	if (lastSelect.length() > 0) {
 	    return executeQuery(lastSelect);
 	}
 	return null;
     }
-
+// new2
     @Override
     public int getUpdateCount() throws SQLException {
-	// TODO Auto-generated method stub
-	return 0;
+	return updateCount;
     }
 
     private String[][] convertTableToArray(ArrayList<ArrayList<String>> table) {

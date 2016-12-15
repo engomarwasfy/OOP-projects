@@ -40,7 +40,7 @@ public class Table implements ImethodOfTable {
 	if (protocol.equalsIgnoreCase("xmldb")) {
 	    fileWriter = new XmlFile();
 	} else {
-	    fileWriter = new XmlFile();
+	    fileWriter = new JsonFile();
 	}
     }
 
@@ -61,7 +61,7 @@ public class Table implements ImethodOfTable {
     }
 
     @Override
-    public int[] deleteRows(int[] deleteThisRow) {
+    public int[] deleteRows(int[] deleteThisRow) throws SQLException {
 	try {
 	    data = fileWriter.read(databaseName, tableName);
 	} catch (ParserConfigurationException | SAXException | IOException e1) {
@@ -108,7 +108,7 @@ public class Table implements ImethodOfTable {
     }
 
     @Override
-    public int[] update(int[] updateThisRow, String[] colsData) {
+    public int[] update(int[] updateThisRow, String[] colsData) throws SQLException {
 	try {
 	    data = fileWriter.read(databaseName, tableName);
 	} catch (ParserConfigurationException | SAXException | IOException e1) {
@@ -146,7 +146,7 @@ public class Table implements ImethodOfTable {
     }
 
     @Override
-    public void insertRow(String[] cols, String[] colsData) {
+    public void insertRow(String[] cols, String[] colsData) throws SQLException {
 	try {
 	    data = fileWriter.read(databaseName, tableName);
 	} catch (ParserConfigurationException | SAXException | IOException e1) {
@@ -200,7 +200,7 @@ public class Table implements ImethodOfTable {
     }
 
     @Override
-    public void addCoulm(String colName, String colType) {
+    public void addCoulm(String colName, String colType) throws SQLException {
 	try {
 	    data = fileWriter.read(databaseName, tableName);
 	} catch (ParserConfigurationException | SAXException | IOException e1) {
@@ -221,7 +221,7 @@ public class Table implements ImethodOfTable {
     }
 
     @Override
-    public void removeCoulm(String colName) {
+    public void removeCoulm(String colName) throws SQLException {
 	try {
 	    data = fileWriter.read(databaseName, tableName);
 	} catch (ParserConfigurationException | SAXException | IOException e1) {

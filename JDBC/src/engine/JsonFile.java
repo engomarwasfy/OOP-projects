@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -61,7 +62,7 @@ public class JsonFile implements IFile {
     @Override
     public void write(final ArrayList<ArrayList<String>> data, final String dataBaseName, final String xmlName,
 	    final ArrayList<String> cols, final ArrayList<String> types) throws ParserConfigurationException,
-	    TransformerConfigurationException, TransformerFactoryConfigurationError {
+	    TransformerConfigurationException, TransformerFactoryConfigurationError, SQLException {
 	final JSONObject obj = new JSONObject();
 	String tmp = System.getProperty("java.io.tmpdir");
 	File f = new File(tmp + "DBMS" + File.separator + dataBaseName + File.separator + xmlName + ".json");
@@ -84,6 +85,7 @@ public class JsonFile implements IFile {
 	}
 	counter++;
 	obj.put(convertIntegerToString(counter), temp);
+	obj.put("num", new Integer(2));
 	if(data.size() > 0){
 	    obj.put("num", new Integer(data.size() + 2));
 		ArrayList<String> row = new ArrayList();
@@ -101,7 +103,8 @@ public class JsonFile implements IFile {
 		try {
 	    file.write(obj.toString());
 	} catch (final IOException e) {
-	    e.printStackTrace();
+	    final SQLException e1 = new SQLException("not valid statment");
+	    throw e1;
 	}
 	try {
 	    file.flush();

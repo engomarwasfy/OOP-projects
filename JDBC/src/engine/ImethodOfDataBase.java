@@ -1,6 +1,7 @@
 package engine;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
@@ -13,5 +14,5 @@ public interface ImethodOfDataBase {
     
     public void dropTable(String tableName);
     
-    public void createTable(String tableName , String[] cols) ;
+    public void createTable(String tableName , String[] cols) throws SQLException ;
 }

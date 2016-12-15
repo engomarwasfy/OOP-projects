@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -45,7 +46,7 @@ public class DataBase implements ImethodOfDataBase {
 	if (protocol.equalsIgnoreCase("xmldb")) {
 	    fileWriter = new XmlFile();
 	} else {
-	    fileWriter = new XmlFile();
+	    fileWriter = new JsonFile();
 	}
     }
 
@@ -128,7 +129,7 @@ public class DataBase implements ImethodOfDataBase {
     }
 
     @Override
-    public void createTable(String tableName, String[] cols) {
+    public void createTable(String tableName, String[] cols) throws SQLException {
 	for (int i = 0; i < tablesNames.size(); i++) {
 	    if (tableName.equals(tablesNames.get(i))) {
 		throw new RuntimeException();

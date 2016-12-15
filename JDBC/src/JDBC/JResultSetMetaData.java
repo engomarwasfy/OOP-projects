@@ -1,16 +1,18 @@
 package JDBC;
 
-import java.sql.Date;
 import java.sql.SQLException;
 
 public class JResultSetMetaData implements java.sql.ResultSetMetaData{
   private final String colNames[];
-  private final Object arr[][];
+  private final String arr[][];
   private final String tableName;
-  public JResultSetMetaData(final String colNames[],final Object arr[][], final String tableName){
+  private final String colTypes[];
+
+  public JResultSetMetaData(final String colNames[],final String arr[][], final String tableName, final String colTypes[]){
     this.arr = arr;
     this.colNames = colNames;
     this.tableName = tableName;
+    this.colTypes = colTypes;
   }
 
   @Override
@@ -19,7 +21,7 @@ public class JResultSetMetaData implements java.sql.ResultSetMetaData{
       final SQLException ex = new SQLException("data access error , error at getColumnCount");
       throw ex;
     }
-    return arr[0].length;
+    return colNames.length;
   }
 
   @Override
@@ -47,22 +49,23 @@ public class JResultSetMetaData implements java.sql.ResultSetMetaData{
     }
     return colNames[column - 1];
   }
+  //new2222
   @Override
   public int getColumnType(final int column) throws SQLException {
     if (arr == null || column < 1 || column > colNames.length) {
-      final SQLException ex = new SQLException("data access error , error at getColumnType");
-      throw ex;
+     return (Integer) null;
     }
-    if (arr[0][column - 1] instanceof String) {
+
+    if (colTypes[column - 1] == "string") {
       return java.sql.Types.VARCHAR;
     }
-    if (arr[0][column - 1] instanceof Integer) {
+    if (colTypes[column - 1] == "integer") {
       return java.sql.Types.INTEGER;
     }
-    if (arr[0][column - 1] instanceof Double) {
+    if (colTypes[column - 1] == "float") {
       return java.sql.Types.FLOAT;
     }
-    if (arr[0][column - 1] instanceof Date) {
+    if (colTypes[column - 1] == "date") {
       return java.sql.Types.DATE;
     }
     final SQLException ex = new SQLException("data access error , error at getColumnType, no type matches");
