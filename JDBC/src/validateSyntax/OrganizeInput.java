@@ -21,6 +21,7 @@ public class OrganizeInput {
 	after = after.replaceAll(" >", ">");
 	after = after.replaceAll("> ", ">");
 	after = after.replaceAll(";", " ;");
+	after = after.toLowerCase();
 	
 	after = after.replaceAll(" +", " ");
 	
