@@ -1,6 +1,6 @@
 package validateSyntax;
 
-public class DropValidator extends Validator {
+public class dropValidator extends Validator {
 
     @Override
     public boolean validate(String[] sql) {

@@ -219,79 +219,79 @@ public class JStatement implements Statement {
 
     @Override
     public ResultSet executeQuery(String arg0) throws SQLException {
-	throw new RuntimeException(arg0);
-//	IExtractor formation = null;
-//	String[] arr = null;
-//	if (arg0.trim().length() != 0) {
-//	    final String after = OrganizeInput.organize(arg0);
-//	    arr = after.split(" ");
-//	    if (s.validate(arr)) {
-//		formation = ExtractorFactory.getExtractor(arr[0].toLowerCase());
-//	    }
-//	}
-//	String tablename = formation.getTableName(arr);
-//	director.direct(arr[0].toLowerCase());
-//	String[][] result = new String[0][0];
-//	try {
-//	    result = bridge.dirct2(director, arr, protocol);
-//	} catch (TransformerException | SAXException | IOException | ParserConfigurationException e) {
-//	    final SQLException e1 = new SQLException("not valid statment");
-//	    throw e1;
-//	}
-//	ArrayList<String> colNames = null;
-//	ArrayList<String> colTypes = null;
-//	try {
-//	    colNames = fileWriter.getcols(UsedDataBase.getUsedDataBase(), tablename);
-//	    colTypes = fileWriter.getcolsTypes(UsedDataBase.getUsedDataBase(), tablename);
-//	} catch (ParserConfigurationException e) {
-//	    final SQLException e1 = new SQLException("not valid statment");
-//	    throw e1;
-//	}
-//	if (arr[0].equalsIgnoreCase("select")) {
-//	    String[] cols = formation.getCol(arr);
-//	    if (!cols[0].equals("*")) {
-//		ArrayList<String> colsNames = new ArrayList<String>();
-//		ArrayList<String> colsTypes = new ArrayList<String>();
-//		for (int i = 0; i < cols.length; i++) {
-//		    int index = colNames.indexOf(cols[i]);
-//		    colsNames.add(colNames.get(index));
-//		    colsTypes.add(colTypes.get(index));
-//		}
-//		JResultset resultset = new JResultset(result, colsNames, tablename, colsTypes);
-//		return resultset;
-//	    }
-//	}
-//	JResultset resultset = new JResultset(result, colNames, tablename, colTypes);
-//	return resultset;
+	IExtractor formation = null;
+	String[] arr = null;
+	if (arg0.trim().length() != 0) {
+	    final String after = OrganizeInput.organize(arg0);
+	    arr = after.split(" ");
+	    if (s.validate(arr)) {
+		formation = ExtractorFactory.getExtractor(arr[0].toLowerCase());
+	    }
+	}
+	String tablename = formation.getTableName(arr);
+	director.direct(arr[0].toLowerCase());
+	String[][] result = new String[0][0];
+	try {
+	    result = bridge.dirct2(director, arr, protocol);
+	} catch (TransformerException | SAXException | IOException | ParserConfigurationException e) {
+	    final SQLException e1 = new SQLException("not valid statment");
+	    throw e1;
+	}
+	ArrayList<String> colNames = null;
+	ArrayList<String> colTypes = null;
+	try {
+	    colNames = fileWriter.getcols(UsedDataBase.getUsedDataBase(), tablename);
+	    colTypes = fileWriter.getcolsTypes(UsedDataBase.getUsedDataBase(), tablename);
+	} catch (ParserConfigurationException e) {
+	    final SQLException e1 = new SQLException("not valid statment");
+	    throw e1;
+	}
+	if (arr[0].equalsIgnoreCase("select")) {
+	    String[] cols = formation.getCol(arr);
+	    if (!cols[0].equals("*")) {
+		ArrayList<String> colsNames = new ArrayList<String>();
+		ArrayList<String> colsTypes = new ArrayList<String>();
+		for (int i = 0; i < cols.length; i++) {
+		    int index = colNames.indexOf(cols[i]);
+		    colsNames.add(colNames.get(index));
+		    colsTypes.add(colTypes.get(index));
+		}
+		JResultset resultset = new JResultset(result, colsNames, tablename, colsTypes);
+		return resultset;
+	    }
+	}
+	JResultset resultset = new JResultset(result, colNames, tablename, colTypes);
+	return resultset;
     }
 
     @Override
     public int executeUpdate(String sql) throws SQLException {
-	if (isClosed()) {
-	    throw new SQLException();
-	}
-	int[] result = new int[0];
-	if (sql.trim().length() != 0) {
-	    final String after = OrganizeInput.organize(sql);
-	    final String[] arr = after.split(" ");
-	    if (s.validate(arr)) {
-		director.direct(arr[0].toLowerCase());
-		try {
-		    result = bridge.dirct(director, arr, protocol);
-		} catch (Exception e) {
-		    final SQLException ex = new SQLException("not valid statment");
-		    throw ex;
-		}
-		if (arr[0].equalsIgnoreCase("update")) {
-		    return result.length;
-		}
-		if (arr[0].equalsIgnoreCase("insert")) {
-		    return 1;
-		}
-	    }
-	}
-	updateCount += result.length;
-	return updateCount;
+	throw new RuntimeException(sql);
+//	if (isClosed()) {
+//	    throw new SQLException();
+//	}
+//	int[] result = new int[0];
+//	if (sql.trim().length() != 0) {
+//	    final String after = OrganizeInput.organize(sql);
+//	    final String[] arr = after.split(" ");
+//	    if (s.validate(arr)) {
+//		director.direct(arr[0].toLowerCase());
+//		try {
+//		    result = bridge.dirct(director, arr, protocol);
+//		} catch (Exception e) {
+//		    final SQLException ex = new SQLException("not valid statment");
+//		    throw ex;
+//		}
+//		if (arr[0].equalsIgnoreCase("update")) {
+//		    return result.length;
+//		}
+//		if (arr[0].equalsIgnoreCase("insert")) {
+//		    return 1;
+//		}
+//	    }
+//	}
+//	updateCount += result.length;
+//	return updateCount;
     }
 
     @Override

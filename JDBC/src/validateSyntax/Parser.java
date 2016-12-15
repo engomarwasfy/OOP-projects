@@ -14,7 +14,7 @@ public class Parser extends Validator {
     public Parser() {
 	create = new CreateValidator();
 	delete = new DeleteValidator();
-	drop = new DropValidator();
+	drop = new dropValidator();
 	insert = new InsertValidator();
 	select = new SelectValidator();
 	update = new UpdateValidator();
