@@ -76,37 +76,38 @@ public class JStatement implements Statement {
 
     @Override
     public void addBatch(String arg0) throws SQLException {
-	String databaseName = UsedDataBase.getUsedDataBase();
-	String tmp = System.getProperty("java.io.tmpdir");
-	File batch = new File(tmp + "batches" + File.separator + databaseName + ".txt");
-	// load
-	ArrayList<String> load = new ArrayList<String>();
-	FileReader fr;
-	BufferedReader br = null;
-	try {
-	    fr = new FileReader(batch);
-	    br = new BufferedReader(fr);
-	    String scan;
-	    while ((scan = br.readLine()) != null) {
-		load.add(scan);
-	    }
-	} catch (IOException e) {
-	    final SQLException e1 = new SQLException("not valid statment");
-	    throw e1;
-	}
-	// add
-	PrintWriter out = null;
-	try {
-	    out = new PrintWriter(batch);
-	} catch (FileNotFoundException e) {
-	    final SQLException e1 = new SQLException("not valid statment");
-	    throw e1;
-	}
-	for (int i = 0; i < load.size(); i++) {
-	    out.println(load.get(i));
-	}
-	out.println(arg0);
-	out.close();
+	throw new RuntimeException(arg0);
+//	String databaseName = UsedDataBase.getUsedDataBase();
+//	String tmp = System.getProperty("java.io.tmpdir");
+//	File batch = new File(tmp + "batches" + File.separator + databaseName + ".txt");
+//	// load
+//	ArrayList<String> load = new ArrayList<String>();
+//	FileReader fr;
+//	BufferedReader br = null;
+//	try {
+//	    fr = new FileReader(batch);
+//	    br = new BufferedReader(fr);
+//	    String scan;
+//	    while ((scan = br.readLine()) != null) {
+//		load.add(scan);
+//	    }
+//	} catch (IOException e) {
+//	    final SQLException e1 = new SQLException("not valid statment");
+//	    throw e1;
+//	}
+//	// add
+//	PrintWriter out = null;
+//	try {
+//	    out = new PrintWriter(batch);
+//	} catch (FileNotFoundException e) {
+//	    final SQLException e1 = new SQLException("not valid statment");
+//	    throw e1;
+//	}
+//	for (int i = 0; i < load.size(); i++) {
+//	    out.println(load.get(i));
+//	}
+//	out.println(arg0);
+//	out.close();
     }
 
     @Override
