@@ -131,41 +131,41 @@ public class JStatement implements Statement {
 
     @Override
     public boolean execute(String arg0) throws SQLException {
-	String[] arr = null;
-	if (arg0.trim().length() != 0) {
-	    final String after = OrganizeInput.organize(arg0);
-	    arr = after.split(" ");
-	    if (s.validate(arr)) {
-		director.direct(arr[0].toLowerCase());
-		try {
-		    bridge.dirct(director, arr, protocol);
-		} catch (Exception e) {
-		    final SQLException e1 = new SQLException("not valid statment");
-		    throw e1;
-		}
-	    } else {
-		final SQLException e = new SQLException("not valid statment");
-		throw e;
-	    }
-	}
-	try {
-	    if (arr[0].equalsIgnoreCase("select")) {
-		lastSelect = arg0;
-		ResultSet result = executeQuery(arg0);
-		int cunter = 0;
-		while (result.next()) {
-		    cunter++;
-		}
-		if (cunter > 0) {
-		    return true;
-		} else {
-		    return false;
-		}
-	    }
-	} catch (Exception e) {
-	    final SQLException e1 = new SQLException("not valid statment");
-	    throw e1;
-	}
+//	String[] arr = null;
+//	if (arg0.trim().length() != 0) {
+//	    final String after = OrganizeInput.organize(arg0);
+//	    arr = after.split(" ");
+//	    if (s.validate(arr)) {
+//		director.direct(arr[0].toLowerCase());
+//		try {
+//		    bridge.dirct(director, arr, protocol);
+//		} catch (Exception e) {
+//		    final SQLException e1 = new SQLException("not valid statment");
+//		    throw e1;
+//		}
+//	    } else {
+//		final SQLException e = new SQLException("not valid statment");
+//		throw e;
+//	    }
+//	}
+//	try {
+//	    if (arr[0].equalsIgnoreCase("select")) {
+//		lastSelect = arg0;
+//		ResultSet result = executeQuery(arg0);
+//		int cunter = 0;
+//		while (result.next()) {
+//		    cunter++;
+//		}
+//		if (cunter > 0) {
+//		    return true;
+//		} else {
+//		    return false;
+//		}
+//	    }
+//	} catch (Exception e) {
+//	    final SQLException e1 = new SQLException("not valid statment");
+//	    throw e1;
+//	}
 	return false;
     }
 
