@@ -52,26 +52,28 @@ public class JResultSetMetaData implements java.sql.ResultSetMetaData{
 
   @Override
   public int getColumnType(final int column) throws SQLException {
-    if (arr == null || column < 1 || column > colNames.length) {
-     return (Integer) null;
-    }
-
-    if (colTypes[column - 1] == "string") {
-      return java.sql.Types.VARCHAR;
-    }
-    if (colTypes[column - 1] == "integer") {
-      return java.sql.Types.INTEGER;
-    }
-    if (colTypes[column - 1] == "float") {
-      return java.sql.Types.FLOAT;
-    }
-    if (colTypes[column - 1] == "date") {
-      return java.sql.Types.DATE;
-    }
-
-    final SQLException ex = new SQLException("colType = "+colTypes[column - 1]);
-    throw ex;
+	  throw new RuntimeException("7amada");
   }
+//    if (arr == null || column < 1 || column > colNames.length) {
+//     return (Integer) null;
+//    }
+//
+//    if (colTypes[column - 1] == "string") {
+//      return java.sql.Types.VARCHAR;
+//    }
+//    if (colTypes[column - 1] == "integer") {
+//      return java.sql.Types.INTEGER;
+//    }
+//    if (colTypes[column - 1] == "float") {
+//      return java.sql.Types.FLOAT;
+//    }
+//    if (colTypes[column - 1] == "date") {
+//      return java.sql.Types.DATE;
+//    }
+//
+//    final SQLException ex = new SQLException("colType = "+colTypes[column - 1]);
+//    throw ex;
+//  }
 
   /****************************************************/
 
@@ -108,7 +110,7 @@ public class JResultSetMetaData implements java.sql.ResultSetMetaData{
   @Override
   public String getColumnTypeName(final int arg0) throws SQLException {
     // TODO Auto-generated method stub
-    return "Integer";
+    return null;
   }
 
   @Override
