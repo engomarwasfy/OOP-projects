@@ -289,7 +289,7 @@ public class JStatement implements Statement {
 		    return 1;
 		}
 	    }
-	}
+	
 	updateCount += result.length;
 	return updateCount;
     }
