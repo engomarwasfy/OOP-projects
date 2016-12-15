@@ -98,6 +98,7 @@ public class DataBase implements ImethodOfDataBase {
 	if (dir.exists()) {
 	    isDataBaseHere=true;
 	   // DropDateBase.drop(databaseName);
+	    return;
 	}
 	dir.mkdir();
 	File batchdir = new File(tmp + "batches");
