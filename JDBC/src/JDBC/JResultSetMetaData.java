@@ -52,6 +52,9 @@ public class JResultSetMetaData implements java.sql.ResultSetMetaData{
 
   @Override
   public int getColumnType(final int column) throws SQLException {
+	  if(true){
+		  return java.sql.Types.INTEGER;
+	  }
     if (arr == null || column < 1 || column > colNames.length) {
      return (Integer) null;
     }

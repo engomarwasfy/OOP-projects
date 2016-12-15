@@ -30,7 +30,6 @@ public class JResultset implements ResultSet {
   private int cursor = -1;
   private final int rowsNum;
   private final String tableName;
-
   public JResultset(final String[][] list, final ArrayList<String> colNames,
       final String tableName, final ArrayList<String> colTypes) {
     this.arr = list;
