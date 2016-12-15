@@ -95,8 +95,8 @@ public class DataBase implements ImethodOfDataBase {
 	DBMSdir.mkdir();
 	final File dir = new File(DBMSdir + File.separator + databaseName);
 	if (dir.exists()) {
-	    //DropDateBase.drop(databaseName);
-	}else{
+	    DropDateBase.drop(databaseName);
+	}
 	dir.mkdir();
 	File batchdir = new File(tmp + "batches");
 	batchdir.mkdir();
@@ -109,7 +109,6 @@ public class DataBase implements ImethodOfDataBase {
 	}
 	out.close();
 	System.out.println("Data Base Created");
-	}
     }
 
     @Override
