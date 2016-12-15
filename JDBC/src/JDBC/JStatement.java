@@ -166,7 +166,7 @@ public class JStatement implements Statement {
 //	    final SQLException e1 = new SQLException("not valid statment");
 //	    throw e1;
 //	}
-	return false;
+	return true;
     }
 
     @Override
