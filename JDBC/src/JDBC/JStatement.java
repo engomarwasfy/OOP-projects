@@ -24,6 +24,7 @@ import org.xml.sax.SAXException;
 import bridge.Bridge;
 import bridge.Director;
 import bridge.ExtractorFactory;
+import engine.DataBase;
 import engine.IFile;
 import engine.JsonFile;
 import engine.XmlFile;
@@ -131,43 +132,47 @@ public class JStatement implements Statement {
 
     @Override
     public boolean execute(String arg0) throws SQLException {
-	throw new RuntimeException("the Query is"+ arg0);
-//	String[] arr = null;
-//	if (arg0.trim().length() != 0) {
-//	    final String after = OrganizeInput.organize(arg0);
-//	    arr = after.split(" ");
-//	    if (s.validate(arr)) {
-//		director.direct(arr[0].toLowerCase());
-//		try {
-//		    bridge.dirct(director, arr, protocol);
-//		} catch (Exception e) {
-//		    final SQLException e1 = new SQLException("not valid statment");
-//		    throw e1;
-//		}
-//	    } else {
-//		final SQLException e = new SQLException("not valid statment");
-//		throw e;
-//	    }
-//	}
-//	try {
-//	    if (arr[0].equalsIgnoreCase("select")) {
-//		lastSelect = arg0;
-//		ResultSet result = executeQuery(arg0);
-//		int cunter = 0;
-//		while (result.next()) {
-//		    cunter++;
-//		}
-//		if (cunter > 0) {
-//		    return true;
-//		} else {
-//		    return false;
-//		}
-//	    }
-//	} catch (Exception e) {
-//	    final SQLException e1 = new SQLException("not valid statment");
-//	    throw e1;
-//	}
-//	return false;
+	String[] arr = null;
+		if (arg0.trim().length() != 0) {
+	    final String after = OrganizeInput.organize(arg0);
+	    arr = after.split(" ");
+	    if (s.validate(arr)) {
+		director.direct(arr[0].toLowerCase());
+		try {
+		    bridge.dirct(director, arr, protocol);
+		    if(DataBase.isDataBaseHere==true){
+			    DataBase.isDataBaseHere=false;
+			    return false;
+			}
+
+		} catch (Exception e) {
+		    final SQLException e1 = new SQLException("not valid statment");
+		    throw e1;
+		}
+	    } else {
+		final SQLException e = new SQLException("not valid statment");
+		throw e;
+	    }
+	}
+	try {
+	    if (arr[0].equalsIgnoreCase("select")) {
+		lastSelect = arg0;
+		ResultSet result = executeQuery(arg0);
+		int cunter = 0;
+		while (result.next()) {
+		    cunter++;
+		}
+		if (cunter > 0) {
+		    return true;
+		} else {
+		    return false;
+		}
+	    }
+	} catch (Exception e) {
+	    final SQLException e1 = new SQLException("not valid statment");
+	    throw e1;
+	}
+	return false;
     }
 
     @Override
