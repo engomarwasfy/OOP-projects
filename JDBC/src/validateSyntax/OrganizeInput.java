@@ -2,6 +2,9 @@ package validateSyntax;
 
 public class OrganizeInput {
 
+    public static void main(String[] args) {
+	System.out.println(organize("INSERT INTO table_name1(column_NAME1, COLUMN_name3, column_name2) VALUES ('value1', 'value3', 4)"));
+    }
     public static String organize(String before) {
 	if(!before.contains(";")){
 	    before = before +";";
@@ -11,7 +14,6 @@ public class OrganizeInput {
 	after = after.replaceAll(", ", ",");
 	after = after.replaceAll("\\(", " \\( ");
 	after = after.replaceAll("\\)", " \\) ");
-	after = after.replaceAll("(", " (");
 	after = after.replaceAll(" =", "=");
 	after = after.replaceAll("= ", "=");
 	after = after.replaceAll(" <", "<");

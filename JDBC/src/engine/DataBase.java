@@ -138,7 +138,7 @@ public class DataBase implements ImethodOfDataBase {
 	ArrayList<String> colsName = new ArrayList<String>();
 	ArrayList<String> colstype = new ArrayList<String>();
 	for (int j = 0; j < cols.length; j++) {
-	    colsName.add(cols[j].split(" ")[0]);
+	    colsName.add(cols[j].split(" ")[0].toLowerCase());
 	    colstype.add(cols[j].split(" ")[1]);
 	}
 	
