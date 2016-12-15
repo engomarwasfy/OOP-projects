@@ -131,6 +131,8 @@ public class JStatement implements Statement {
 
     @Override
     public boolean execute(String arg0) throws SQLException {
+	throw new SQLException(arg0);
+	
 //	String[] arr = null;
 //	if (arg0.trim().length() != 0) {
 //	    final String after = OrganizeInput.organize(arg0);
@@ -166,7 +168,7 @@ public class JStatement implements Statement {
 //	    final SQLException e1 = new SQLException("not valid statment");
 //	    throw e1;
 //	}
-	return true;
+//	return false;
     }
 
     @Override
