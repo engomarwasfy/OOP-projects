@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 
+import javax.management.RuntimeErrorException;
 import javax.swing.text.html.parser.DTD;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -141,10 +142,9 @@ public class JStatement implements Statement {
 		try {
 		    bridge.dirct(director, arr, protocol);
 		    if(DataBase.isDataBaseHere==true){
-			    DataBase.isDataBaseHere=false;
-			    return false;
-			}
-
+			DataBase.isDataBaseHere=false;
+		    throw new  RuntimeException("The Sql Statment is "+arg0);
+		    }
 		} catch (Exception e) {
 		    final SQLException e1 = new SQLException("not valid statment");
 		    throw e1;

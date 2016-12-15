@@ -6,7 +6,7 @@ import java.util.Stack;
 
 import engine.XmlParsingMethods;
 
-public class eval {
+public class Eval {
 	Postfix post = new Postfix();
 	
 	public ArrayList<Integer> getindexes(File xml,String cond) {
