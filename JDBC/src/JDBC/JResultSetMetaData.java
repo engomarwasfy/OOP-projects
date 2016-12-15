@@ -49,7 +49,7 @@ public class JResultSetMetaData implements java.sql.ResultSetMetaData{
     }
     return colNames[column - 1];
   }
-  //new2222
+
   @Override
   public int getColumnType(final int column) throws SQLException {
     if (arr == null || column < 1 || column > colNames.length) {
@@ -68,10 +68,10 @@ public class JResultSetMetaData implements java.sql.ResultSetMetaData{
     if (colTypes[column - 1] == "date") {
       return java.sql.Types.DATE;
     }
-    final SQLException ex = new SQLException("data access error , error at getColumnType, no type matches");
+
+    final SQLException ex = new SQLException("colType = "+colTypes[column - 1]);
     throw ex;
   }
-
 
   /****************************************************/
 

@@ -2,17 +2,10 @@ package eval;
 import java.util.Stack;
 
 public class ExpressionEvaluator {
-  Stack operation = new Stack();
-  String postfix = "";
-  char get;
-  int num1;
-  int num2;
-  char operator;
-  int sum;
-  char test2;
-  Object test3;
-  int count = 0;
-
+  private final Stack operation = new Stack();
+  private String postfix = "";
+  private char get;
+  private int count = 0;
   public String infixToPostfix(final String expression) {
     if (expression.length() <= 1) {
       throw new RuntimeException("invalid");
@@ -32,8 +25,8 @@ public class ExpressionEvaluator {
           throw new RuntimeException("invalid");
         }
         if (operation.size() >= 2) {
-          char test = (char) operation.pop();
-          if ((checkPrecedence(test)) && ((char) test != '(')) {
+          final char test = (char) operation.pop();
+          if (checkPrecedence(test) && test != '(') {
             if (postfix.charAt(postfix.length() - 1) == ' ') {
               postfix += (char) operation.pop();
             } else {
@@ -73,7 +66,7 @@ public class ExpressionEvaluator {
             }
           }
         } else {
-          if ((get == ' ') && postfix.length() > 1) {
+          if (get == ' ' && postfix.length() > 1) {
             if (postfix.charAt(postfix.length() - 1) != ' ') {
               postfix += get;
             }
@@ -89,8 +82,8 @@ public class ExpressionEvaluator {
           throw new RuntimeException("invalid");
         }
         if (operation.size() >= 2) {
-          char test = (char) operation.pop();
-          if ((checkPrecedence(test)) && ((char) test != '(')) {
+          final char test = (char) operation.pop();
+          if (checkPrecedence(test) && test != '(') {
             if (postfix.charAt(postfix.length() - 1) != ' ') {
               postfix += " " + (char) operation.pop() + " ";
             } else {
@@ -137,7 +130,7 @@ public class ExpressionEvaluator {
             }
           }
         } else {
-          if ((get == ' ') && postfix.length() > 1) {
+          if (get == ' ' && postfix.length() > 1) {
             if (postfix.charAt(postfix.length() - 1) != ' ') {
               postfix += get;
             }
@@ -156,13 +149,13 @@ public class ExpressionEvaluator {
       }
       postfix += " " + (char) operation.pop();
     }
-    
+
     return postfix;
   }
 
   public boolean checkPrecedence(final char operator) {
-    if ((operator == '+') || (operator == '*')) {
-      if (((char) operation.peek() == '+') || ((char) operation.peek() == '*')) {
+    if (operator == '+' || operator == '*') {
+      if ((char) operation.peek() == '+' || (char) operation.peek() == '*') {
         return true;
       }
       if ((char) operation.peek() == '-') {
@@ -170,7 +163,7 @@ public class ExpressionEvaluator {
       }
     }
     if (operator == '-') {
-      if (((char) operation.peek() == '+') || ((char) operation.peek() == '*')) {
+      if ((char) operation.peek() == '+' || (char) operation.peek() == '*') {
         return false;
       }
       if ((char) operation.peek() == '-') {
