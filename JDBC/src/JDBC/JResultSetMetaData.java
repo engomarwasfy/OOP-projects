@@ -26,32 +26,28 @@ public class JResultSetMetaData implements java.sql.ResultSetMetaData{
 
   @Override
   public String getTableName(final int column) throws SQLException {
-	  throw new RuntimeException("getTableLabel");
+    if (arr == null) {
+      final SQLException ex = new SQLException("data access error , error at getTableName");
+      throw ex;
+    }
+    if(column < 1 || column > colNames.length) {
+      return "";
+    }
+    return tableName;
   }
-//    if (arr == null) {
-//      final SQLException ex = new SQLException("data access error , error at getTableName");
-//      throw ex;
-//    }
-//    if(column < 1 || column > colNames.length) {
-//      return "";
-//    }
-//    return tableName;
-//  }
 
   @Override
   public String getColumnLabel(final int column) throws SQLException {
     //we did not use SQL Aliases "as", so this function will return getColumnName(column)
-	  throw new RuntimeException("getColumnLabel");
-   // return getColumnName(column);
+    return getColumnName(column);
   }
   @Override
   public String getColumnName(final int column) throws SQLException {
-	  throw new RuntimeException("getColumnName");
-//    if (arr == null || column < 1 || column > colNames.length) {
-//      final SQLException ex = new SQLException("data access error , error at getColumnName");
-//      throw ex;
-//    }
-//    return colNames[column - 1];
+    if (arr == null || column < 1 || column > colNames.length) {
+      final SQLException ex = new SQLException("data access error , error at getColumnName");
+      throw ex;
+    }
+    return colNames[column - 1];
   }
 
   @Override
