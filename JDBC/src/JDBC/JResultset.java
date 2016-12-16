@@ -284,8 +284,6 @@ public class JResultset implements ResultSet {
     }else if ( colTypes[columnIndex-1].equalsIgnoreCase("float")){
     	Float.parseFloat(arr[cursor][columnIndex-1]);
     }else if ( colTypes[columnIndex-1].equalsIgnoreCase("date")){
-    	Float.parseFloat(arr[cursor][columnIndex-1]);
-    }else{
     	return java.sql.Date.valueOf(arr[cursor][columnIndex-1]);
     }
     return arr[cursor][columnIndex - 1];
