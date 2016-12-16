@@ -149,10 +149,11 @@ public class JResultset implements ResultSet {
     if (arr[cursor][columnIndex - 1].equals("null")) {
       return null;
     }
-    final String[] DateArray = arr[cursor][columnIndex - 1].split("-");
+  //  final String[] DateArray = arr[cursor][columnIndex - 1].split("-");
+    return java.sql.Date.valueOf(arr[cursor][columnIndex-1]);
 
-    return new Date(Integer.parseInt(DateArray[0]),
-        Integer.parseInt(DateArray[1]), Integer.parseInt(DateArray[2]));
+    //return new Date(Integer.parseInt(DateArray[0]),
+      //  Integer.parseInt(DateArray[1]), Integer.parseInt(DateArray[2]));
   }
 
   // NEW
@@ -179,10 +180,11 @@ public class JResultset implements ResultSet {
     if (arr[cursor][colIndex - 1] == null) {
       return null;
     }
-    final String[] DateArray = arr[cursor][colIndex - 1].split("-");
-
-    return new Date(Integer.parseInt(DateArray[0]),
-        Integer.parseInt(DateArray[1]), Integer.parseInt(DateArray[2]));
+    return java.sql.Date.valueOf(arr[cursor][colIndex-1]);
+//    final String[] DateArray = arr[cursor][colIndex - 1].split("-");
+//
+//    return new Date(Integer.parseInt(DateArray[0]),
+//        Integer.parseInt(DateArray[1]), Integer.parseInt(DateArray[2]));
   }
 
   @Override
@@ -273,6 +275,18 @@ public class JResultset implements ResultSet {
     }
     if (arr[cursor][columnIndex - 1] == null) {
       return 0;
+    }
+    if(colTypes[columnIndex-1].equalsIgnoreCase("string")){
+    	return arr[cursor][columnIndex - 1];
+    }
+    else if(colTypes[columnIndex-1].equalsIgnoreCase("int")){
+    	return Integer.parseInt(arr[cursor][columnIndex - 1]);
+    }else if ( colTypes[columnIndex-1].equalsIgnoreCase("float")){
+    	Float.parseFloat(arr[cursor][columnIndex-1]);
+    }else if ( colTypes[columnIndex-1].equalsIgnoreCase("date")){
+    	Float.parseFloat(arr[cursor][columnIndex-1]);
+    }else{
+    	return java.sql.Date.valueOf(arr[cursor][columnIndex-1]);
     }
     return arr[cursor][columnIndex - 1];
   }
