@@ -24,7 +24,7 @@ public class JConnection implements Connection {
   private static JConnection instance = new JConnection();
   private static String protocol = "xmldb";
 
-  private JConnection() {
+  public JConnection() {
 
   }
 

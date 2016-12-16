@@ -42,7 +42,7 @@ public class JStatement implements Statement {
   private static int updateCount = 0;
   private static int QueryTimeout = 0;
 
-  private JStatement() {
+  public JStatement() {
 
   }
 
