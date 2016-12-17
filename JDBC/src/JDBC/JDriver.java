@@ -9,6 +9,8 @@ import java.sql.SQLFeatureNotSupportedException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import logging.Log;
+
 public class JDriver implements Driver {
 
 	static {

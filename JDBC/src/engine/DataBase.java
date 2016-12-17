@@ -13,7 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
-import JDBC.Log;
+import logging.Log;
 
 
 public class DataBase implements ImethodOfDataBase {

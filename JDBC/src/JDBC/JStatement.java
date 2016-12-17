@@ -27,6 +27,7 @@ import engine.JsonFile;
 import engine.XmlFile;
 import extractInformation.IExtractor;
 import extractInformation.UsedDataBase;
+import logging.Log;
 import validateSyntax.OrganizeInput;
 import validateSyntax.Parser;
 

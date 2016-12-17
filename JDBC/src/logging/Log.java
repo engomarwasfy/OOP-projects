@@ -1,4 +1,4 @@
-package JDBC;
+package logging;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
@@ -6,8 +6,8 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class Log {
-	static int x = 0;
-	 public static Logger logger = Logger.getLogger("MyLog");  
+  private static int x = 0;
+	private static Logger logger = Logger.getLogger("MyLog");  
 	public static FileHandler  fh ; 
 	private static void init(){
 		 try {

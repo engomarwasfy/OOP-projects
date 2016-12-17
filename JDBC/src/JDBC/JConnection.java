@@ -19,6 +19,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+import logging.Log;
+
 public class JConnection implements Connection {
 
   private static JConnection instance = new JConnection();

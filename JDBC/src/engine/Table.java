@@ -12,7 +12,7 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.xml.sax.SAXException;
 
-import JDBC.Log;
+import logging.Log;
 
 public class Table implements ImethodOfTable {
   private String databaseName;
