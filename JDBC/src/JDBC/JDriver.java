@@ -52,17 +52,17 @@ public class JDriver implements Driver {
 
   @Override
   public int getMajorVersion() {
-    return 0;
+	  throw new java.lang.UnsupportedOperationException();
   }
 
   @Override
   public int getMinorVersion() {
-    return 0;
+	  throw new java.lang.UnsupportedOperationException();
   }
 
   @Override
   public Logger getParentLogger() throws SQLFeatureNotSupportedException {
-    return null;
+	  throw new java.lang.UnsupportedOperationException();
   }
 
   @Override
@@ -83,7 +83,7 @@ public class JDriver implements Driver {
 
   @Override
   public boolean jdbcCompliant() {
-    return false;
+throw new java.lang.UnsupportedOperationException();
   }
 
 }
