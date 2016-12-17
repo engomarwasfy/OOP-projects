@@ -29,14 +29,14 @@ public class Main {
 			 */
 			connection = GetConnection.getConnection(); // function at the bottom of file.
 			
-			System.out.println("Connection established");
+			System.out.println(Messages.getString("Main.0")); //$NON-NLS-1$
 			
 			/*Create statement object to execute queries*/
 			statement = connection.createStatement();
 
 		} catch (Exception e) {
 
-			System.out.println("Check your connection again.");
+			System.out.println(Messages.getString("Main.1")); //$NON-NLS-1$
 
 		}
 
@@ -51,7 +51,7 @@ public class Main {
 
 	public static void executeQuery() {
 
-		System.out.print("$> ");
+		System.out.print(Messages.getString("Main.2")); //$NON-NLS-1$
 
 		try {
 			
@@ -59,14 +59,14 @@ public class Main {
 			String query = scan.nextLine();
 			
 			/*split the query into array of string object using the space delimiter*/
-			String[] queryBifercation = query.split(" ");
+			String[] queryBifercation = query.split(Messages.getString("Main.3")); //$NON-NLS-1$
 
 			/*if the first word of the query is 'SELECT' or 'SHOW'*/
-			if (queryBifercation[0].equalsIgnoreCase("SELECT") || queryBifercation[0].equalsIgnoreCase("SHOW")) {
+			if (queryBifercation[0].equalsIgnoreCase(Messages.getString("Main.4")) || queryBifercation[0].equalsIgnoreCase(Messages.getString("Main.5"))) { //$NON-NLS-1$ //$NON-NLS-2$
 
 				/*execute the query and store the result set returned in resultSet*/
 				resultSet = statement.executeQuery(query);
-				System.out.println("query success");
+				System.out.println(Messages.getString("Main.6")); //$NON-NLS-1$
 				
 				/*call the 'printResultSet' function*/
 				printResultSet();
@@ -78,13 +78,13 @@ public class Main {
 				 * query with the execute update command
 				 */
 				statement.executeUpdate(query);
-				System.out.println("query success");
+				System.out.println(Messages.getString("Main.7")); //$NON-NLS-1$
 
 			}
 
 		} catch (Exception e) {
 
-			System.out.println("Statement Cannot be executed.");
+			System.out.println(Messages.getString("Main.8")); //$NON-NLS-1$
 
 		}
 
@@ -104,7 +104,7 @@ public class Main {
 		for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
 			//if i is greater than one
 			if (i > 1)	// first column must not have a tab before it
-				System.out.print("\t");
+				System.out.print(Messages.getString("Main.9")); //$NON-NLS-1$
 			String columnName = resultSetMetaData.getColumnName(i);
 			System.out.print(columnName);
 		}
@@ -112,11 +112,11 @@ public class Main {
 		while (resultSet.next()) {
 			for (int i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
 				if (i > 1)
-					System.out.print("\t");
+					System.out.print(Messages.getString("Main.10")); //$NON-NLS-1$
 				String columnValue = resultSet.getString(i);
 				System.out.print(columnValue);
 			}
-			System.out.println("");
+			System.out.println(Messages.getString("Main.11")); //$NON-NLS-1$
 		}
 	}
 	
@@ -131,14 +131,14 @@ class GetConnection {
 
 	public static Connection getConnection() {
 		
-		USERNAME = "dbuser"; // enter username here
-		PASSWORD = "dbpassword"; // enter password here 
-		CONNECTION = "jdbc:mysql://localhost/"; // link
+		USERNAME = Messages.getString("Main.12"); // enter username here //$NON-NLS-1$
+		PASSWORD = Messages.getString("Main.13"); // enter password here  //$NON-NLS-1$
+		CONNECTION = Messages.getString("Main.14"); // link //$NON-NLS-1$
 
 		try {
 			
 			/*Coerce the driver on the java application*/
-			Class.forName("JDBC.JDriver");
+			Class.forName(Messages.getString("Main.15")); //$NON-NLS-1$
 			
 			/*Get the connection from the DriverManager Class and call the function 
 			 * 'getConnection'*/

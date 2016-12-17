@@ -58,8 +58,10 @@ public class JStatement implements Statement {
     protocol = newProtocol;
     if (protocol.equalsIgnoreCase("xmldb")) {
       fileWriter = new XmlFile();
+      Log.log("use xml file", "info");
     } else {
       fileWriter = new JsonFile();
+      Log.log("use json file", "info");
     }
   }
 
@@ -84,8 +86,10 @@ public class JStatement implements Statement {
       while ((scan = br.readLine()) != null) {
         load.add(scan);
       }
+      Log.log("batch added successfully", "info");
     } catch (final IOException e) {
       final SQLException e1 = new SQLException("not valid statment");
+      Log.log("error during adding batch", "warn");
       throw e1;
     }
     // add
@@ -112,8 +116,10 @@ public class JStatement implements Statement {
     PrintWriter out = null;
     try {
       out = new PrintWriter(batch);
+      Log.log("remove a batch", "info");
     } catch (final FileNotFoundException e) {
       final SQLException e1 = new SQLException("not valid statment");
+      Log.log("error during removing batch", "info");
       throw e1;
     }
     out.close();
@@ -123,7 +129,6 @@ public class JStatement implements Statement {
   public void close() throws SQLException {
     instance = null;
   }
-
   @Override
   public boolean execute(final String arg0) throws SQLException {
     String[] arr = null;
@@ -136,10 +141,12 @@ public class JStatement implements Statement {
           bridge.dirct(director, arr, protocol);
         } catch (final Exception e) {
           final SQLException e1 = new SQLException("not valid statment");
+          Log.log("query failed", "info");
           throw e1;
         }
       } else {
         final SQLException e = new SQLException("not valid statment");
+        Log.log("not valid statement", "info");
         throw e;
       }
     }
@@ -166,7 +173,7 @@ public class JStatement implements Statement {
 
   @Override
   public int[] executeBatch() throws SQLException {
-    final ArrayList<Integer> mostafa = new ArrayList<Integer>();
+    final ArrayList<Integer> row = new ArrayList<Integer>();
     final String databaseName = UsedDataBase.getUsedDataBase();
     final String tmp = System.getProperty("java.io.tmpdir");
     final File batch = new File(
@@ -188,10 +195,12 @@ public class JStatement implements Statement {
               try {
                 final int[] update = bridge.dirct(director, arr, protocol);
                 for (int i = 0; i < update.length; i++) {
-                  mostafa.add(update[i]);
+                  row.add(update[i]);
                 }
+                Log.log("batch executed", "info");
               } catch (TransformerException | SAXException
                   | ParserConfigurationException e) {
+            	  Log.log("batch execution failed", "info");
                 final SQLException e1 = new SQLException("not valid statment");
                 throw e1;
               }
@@ -203,15 +212,15 @@ public class JStatement implements Statement {
       final SQLException e1 = new SQLException("not valid statment");
       throw e1;
     }
-    final LinkedHashSet<Integer> omar = new LinkedHashSet<Integer>();
-    omar.addAll(mostafa);
-    mostafa.clear();
-    mostafa.addAll(omar);
-    final int[] shaban = new int[mostafa.size()];
-    for (int i = 0; i < shaban.length; i++) {
-      shaban[i] = mostafa.get(i);
+    final LinkedHashSet<Integer> table = new LinkedHashSet<Integer>();
+    table.addAll(row);
+    row.clear();
+    row.addAll(table);
+    final int[] returnTable = new int[row.size()];
+    for (int i = 0; i < returnTable.length; i++) {
+      returnTable[i] = row.get(i);
     }
-    return shaban;
+    return returnTable;
   }
 
   @Override
@@ -233,6 +242,7 @@ public class JStatement implements Statement {
     } catch (TransformerException | SAXException | IOException
         | ParserConfigurationException e) {
       final SQLException e1 = new SQLException("not valid statment");
+      Log.log("not valid statement", "warn");
       throw e1;
     }
     ArrayList<String> colNames = null;
@@ -243,6 +253,7 @@ public class JStatement implements Statement {
           tablename);
     } catch (final ParserConfigurationException e) {
       final SQLException e1 = new SQLException("not valid statment");
+      Log.log("not valid statement", "info");
       throw e1;
     }
     if (arr[0].equalsIgnoreCase("select")) {
@@ -268,6 +279,7 @@ public class JStatement implements Statement {
   @Override
   public int executeUpdate(final String sql) throws SQLException {
     if (isClosed()) {
+    	Log.log("statment is closed invalid execute", "warn");
       throw new SQLException();
     }
     int[] result = new int[0];
@@ -277,11 +289,13 @@ public class JStatement implements Statement {
       try {
         if (s.validate(arr)) {
           director.direct(arr[0].toLowerCase());
+          
         } else {
           throw new SQLException();
         }
         result = bridge.dirct(director, arr, protocol);
       } catch (final Exception e) {
+    	  Log.log("invalid statment", "info");
         final SQLException ex = new SQLException("not valid statment");
         throw ex;
       }

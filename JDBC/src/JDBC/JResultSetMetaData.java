@@ -1,21 +1,30 @@
 package JDBC;
 
 import java.sql.SQLException;
+import java.util.Properties;
+import java.util.logging.Logger;
+
+import org.apache.logging.log4j.LoggingException;
+import org.apache.logging.log4j.core.Appender;
+import org.apache.logging.log4j.core.config.properties.PropertiesConfigurationBuilder;
 
 public class JResultSetMetaData implements java.sql.ResultSetMetaData{
   private final String colNames[];
   private final String arr[][];
   private final String tableName;
   private final String colTypes[];
-
+ private Logger log;
   public JResultSetMetaData(final String colNames[],final String arr[][], final String tableName, final String colTypes[]){
     this.arr = arr;
     this.colNames = colNames;
     this.tableName = tableName;
     this.colTypes = colTypes;
+    log = Logger.getLogger(JResultSetMetaData.class.getName());
+    
+   
+    
   }
 
-  @Override
   public int getColumnCount() throws SQLException {
     if (arr == null) {
       final SQLException ex = new SQLException("data access error , error at getColumnCount");

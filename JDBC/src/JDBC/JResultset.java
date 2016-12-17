@@ -189,15 +189,19 @@ public class JResultset implements ResultSet {
 
   @Override
   public String getString(final int columnIndex) throws SQLException {
+	 // System.out.println(cursor);
     if (arr == null || columnIndex < 1 || columnIndex > arr[cursor].length
         || cursor < 0 || cursor >= arr.length) {
+    	System.out.println("condition1");
       final SQLException ex = new SQLException(
           "data access error , error at getString(String columnIndex)");
       throw ex;
     }
     if (arr[cursor][columnIndex - 1] == null) {
+    	//System.out.println("condition2");
       return null;
     }
+    //System.out.println(arr[cursor][columnIndex - 1]);
     return arr[cursor][columnIndex - 1];
 
   }

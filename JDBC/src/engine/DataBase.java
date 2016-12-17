@@ -13,6 +13,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
+import JDBC.Log;
+
 
 public class DataBase implements ImethodOfDataBase {
   private String databaseName;
@@ -95,7 +97,7 @@ public class DataBase implements ImethodOfDataBase {
       e.printStackTrace();
     }
     out.close();
-    System.out.println("Data Base Created");
+    Log.log("DataBase Created ", "info");
   }
 
   @Override
@@ -111,7 +113,8 @@ public class DataBase implements ImethodOfDataBase {
           + File.separator + tableName + "Schemma.dtd");
       final Path dtdpath = xmldtd.toPath();
       Files.delete(dtdpath);
-    } catch (final IOException e) {
+      Log.log("table "+tableName+" droped" , "info");
+    } catch (final IOException e)  {
       e.printStackTrace();
     }
   }
@@ -133,6 +136,7 @@ public class DataBase implements ImethodOfDataBase {
     try {
       fileWriter.write(new ArrayList<ArrayList<String>>(), databaseName,
           tableName, colsName, colstype);
+      Log.log("table "+tableName+" created", "info");
     } catch (TransformerConfigurationException | ParserConfigurationException
         | TransformerFactoryConfigurationError e) {
       throw new RuntimeException();

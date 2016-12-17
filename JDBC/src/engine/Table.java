@@ -12,6 +12,8 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.xml.sax.SAXException;
 
+import JDBC.Log;
+
 public class Table implements ImethodOfTable {
   private String databaseName;
   private String tableName;
@@ -70,6 +72,7 @@ public class Table implements ImethodOfTable {
     }
     try {
       fileWriter.write(data, databaseName, tableName, coulmsNames, coulmsTypes);
+      Log.log("delete rows success", "info");
     } catch (TransformerConfigurationException | ParserConfigurationException
         | TransformerFactoryConfigurationError e) {
       throw new RuntimeException();
@@ -102,6 +105,7 @@ public class Table implements ImethodOfTable {
         row.add(data.get(selectThisRow[i]).get(colsIndex[j]));
       }
       selected.add(row);
+      Log.log("select query success", "info");
     }
     return selected;
   }
@@ -133,6 +137,7 @@ public class Table implements ImethodOfTable {
             colsData[j] = colsData[j].substring(1, colsData[j].length() - 1);
           }
           data.get(updateThisRow[i]).set(colsIndex[j], coulmsdata[j]);
+          Log.log("update statment success", "info");
         } else {
           throw new RuntimeException();
         }
@@ -197,6 +202,7 @@ public class Table implements ImethodOfTable {
     data.add(row);
     try {
       fileWriter.write(data, databaseName, tableName, coulmsNames, coulmsTypes);
+      Log.log("insert statment executed", "info");
     } catch (TransformerConfigurationException | ParserConfigurationException
         | TransformerFactoryConfigurationError e) {
       throw new RuntimeException();
@@ -217,6 +223,7 @@ public class Table implements ImethodOfTable {
     }
     try {
       fileWriter.write(data, databaseName, tableName, coulmsNames, coulmsTypes);
+      Log.log("alter table success", "info");
     } catch (TransformerConfigurationException | ParserConfigurationException
         | TransformerFactoryConfigurationError e) {
       throw new RuntimeException();
@@ -228,6 +235,7 @@ public class Table implements ImethodOfTable {
   public void removeCoulm(final String colName) throws SQLException {
     try {
       data = fileWriter.read(databaseName, tableName);
+      Log.log("alter table success", "info");
     } catch (ParserConfigurationException | SAXException | IOException e1) {
       throw new RuntimeException();
     }

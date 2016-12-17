@@ -11,13 +11,13 @@ import java.util.logging.Logger;
 
 public class JDriver implements Driver {
 
-  static {
-    try {
-      java.sql.DriverManager.registerDriver(new JDriver());
-    } catch (final SQLException E) {
-      throw new RuntimeException("Can't register driver!");
-    }
-  }
+	static {
+		try {
+			java.sql.DriverManager.registerDriver(new JDriver());
+		} catch (final SQLException E) {
+			throw new RuntimeException("Can't register driver!");
+		}
+	}
 
   public JDriver() {
 
@@ -26,14 +26,17 @@ public class JDriver implements Driver {
   @Override
   public boolean acceptsURL(final String arg0) throws SQLException {
     if (arg0 == null) {
+    	  Log.log("url is invalid", "warn");
       throw new RuntimeException();
     }
     final String fixedxml = "jdbc:xmldb://localhost";
     final String fixedjson = "jdbc:altdb://localhost";
     if (arg0.equalsIgnoreCase(fixedxml)
         || arg0.equalsIgnoreCase(fixedjson)) {
+    	  Log.log("you choose xml or json", "info");
       return true;
     }
+    Log.log("invalid file writer", "warn");
     return false;
   }
 
