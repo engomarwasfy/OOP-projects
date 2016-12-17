@@ -11,6 +11,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Logger;
 
+
 public class JDriver implements Driver {
 
 	static {
@@ -36,6 +37,7 @@ public class JDriver implements Driver {
         || arg0.equalsIgnoreCase(fixedjson)) {
       return true;
     }
+   
     return false;
   }
 
@@ -52,38 +54,37 @@ public class JDriver implements Driver {
 
   @Override
   public int getMajorVersion() {
-	  throw new java.lang.UnsupportedOperationException();
+    return 0;
   }
 
   @Override
   public int getMinorVersion() {
-	  throw new java.lang.UnsupportedOperationException();
+    return 0;
   }
 
   @Override
   public Logger getParentLogger() throws SQLFeatureNotSupportedException {
-	  throw new java.lang.UnsupportedOperationException();
+    return null;
   }
 
   @Override
   public DriverPropertyInfo[] getPropertyInfo(final String arg0, final Properties arg1)
       throws SQLException {
-	  
-	 Set x= arg1.keySet();
-	 DriverPropertyInfo []dr = new DriverPropertyInfo[x.size()];
-	 Iterator it = x.iterator();
-	 int count=0;
-	 while(it.hasNext()){
-		
-	   dr[count] = new DriverPropertyInfo( it.next().toString(),arg1.getProperty(it.toString()));
-	   count++;
-	 }
-    return dr;
+	  Set x= arg1.keySet();
+		 DriverPropertyInfo []dr = new DriverPropertyInfo[x.size()];
+		 Iterator it = x.iterator();
+		 int count=0;
+		 while(it.hasNext()){
+			
+		   dr[count] = new DriverPropertyInfo( it.next().toString(),arg1.getProperty(it.toString()));
+		   count++;
+		 }
+	    return dr;
   }
 
   @Override
   public boolean jdbcCompliant() {
-throw new java.lang.UnsupportedOperationException();
+    return false;
   }
 
 }
