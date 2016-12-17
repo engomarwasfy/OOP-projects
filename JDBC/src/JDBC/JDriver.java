@@ -9,10 +9,8 @@ import java.sql.SQLFeatureNotSupportedException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import logging.Log;
-
 public class JDriver implements Driver {
-	 private static Log log = Log.getInstance();
+
 	static {
 		try {
 			java.sql.DriverManager.registerDriver(new JDriver());
@@ -28,17 +26,14 @@ public class JDriver implements Driver {
   @Override
   public boolean acceptsURL(final String arg0) throws SQLException {
     if (arg0 == null) {
-    	  log.log("url is invalid", "warn");
       throw new RuntimeException();
     }
     final String fixedxml = "jdbc:xmldb://localhost";
     final String fixedjson = "jdbc:altdb://localhost";
     if (arg0.equalsIgnoreCase(fixedxml)
         || arg0.equalsIgnoreCase(fixedjson)) {
-    	  log.log("you choose xml or json", "info");
       return true;
     }
-    log.log("invalid file writer", "warn");
     return false;
   }
 

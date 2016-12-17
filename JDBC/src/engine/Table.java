@@ -12,8 +12,6 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.xml.sax.SAXException;
 
-import logging.Log;
-
 public class Table implements ImethodOfTable {
   private String databaseName;
   private String tableName;
@@ -22,7 +20,6 @@ public class Table implements ImethodOfTable {
   private ArrayList<ArrayList<String>> data;
   private IFile fileWriter = new XmlFile();
   private static Table instance = new Table();
-  private static Log log = Log.getInstance();
 
   private Table() {
 
@@ -73,7 +70,6 @@ public class Table implements ImethodOfTable {
     }
     try {
       fileWriter.write(data, databaseName, tableName, coulmsNames, coulmsTypes);
-      log.log("delete rows success", "info");
     } catch (TransformerConfigurationException | ParserConfigurationException
         | TransformerFactoryConfigurationError e) {
       throw new RuntimeException();
@@ -106,7 +102,6 @@ public class Table implements ImethodOfTable {
         row.add(data.get(selectThisRow[i]).get(colsIndex[j]));
       }
       selected.add(row);
-      log.log("select query success", "info");
     }
     return selected;
   }
@@ -138,7 +133,6 @@ public class Table implements ImethodOfTable {
             colsData[j] = colsData[j].substring(1, colsData[j].length() - 1);
           }
           data.get(updateThisRow[i]).set(colsIndex[j], coulmsdata[j]);
-          log.log("update statment success", "info");
         } else {
           throw new RuntimeException();
         }
@@ -203,7 +197,6 @@ public class Table implements ImethodOfTable {
     data.add(row);
     try {
       fileWriter.write(data, databaseName, tableName, coulmsNames, coulmsTypes);
-      log.log("insert statment executed", "info");
     } catch (TransformerConfigurationException | ParserConfigurationException
         | TransformerFactoryConfigurationError e) {
       throw new RuntimeException();
@@ -224,7 +217,6 @@ public class Table implements ImethodOfTable {
     }
     try {
       fileWriter.write(data, databaseName, tableName, coulmsNames, coulmsTypes);
-      log.log("alter table success", "info");
     } catch (TransformerConfigurationException | ParserConfigurationException
         | TransformerFactoryConfigurationError e) {
       throw new RuntimeException();
@@ -236,7 +228,6 @@ public class Table implements ImethodOfTable {
   public void removeCoulm(final String colName) throws SQLException {
     try {
       data = fileWriter.read(databaseName, tableName);
-      log.log("alter table success", "info");
     } catch (ParserConfigurationException | SAXException | IOException e1) {
       throw new RuntimeException();
     }

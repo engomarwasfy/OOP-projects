@@ -19,10 +19,9 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
-import logging.Log;
 
 public class JConnection implements Connection {
-	 private static Log log = Log.getInstance();
+
   private static JConnection instance = new JConnection();
   private static String protocol = "xmldb";
   public JConnection() {
@@ -46,7 +45,6 @@ public class JConnection implements Connection {
 
   @Override
   public void close() throws SQLException {
-	  log.log("connection closed", "info");
     instance = null;
   }
 

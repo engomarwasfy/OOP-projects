@@ -27,7 +27,6 @@ import engine.JsonFile;
 import engine.XmlFile;
 import extractInformation.IExtractor;
 import extractInformation.UsedDataBase;
-import logging.Log;
 import validateSyntax.OrganizeInput;
 import validateSyntax.Parser;
 
@@ -42,7 +41,6 @@ public class JStatement implements Statement {
   private static IFile fileWriter = new XmlFile();
   private static int updateCount = 0;
   private static int QueryTimeout = 0;
-  private static Log log = Log.getInstance();
 
   public JStatement() {
 
@@ -60,10 +58,8 @@ public class JStatement implements Statement {
     protocol = newProtocol;
     if (protocol.equalsIgnoreCase("xmldb")) {
       fileWriter = new XmlFile();
-      log.log("use xml file", "info");
     } else {
       fileWriter = new JsonFile();
-      log.log("use json file", "info");
     }
   }
 
@@ -88,10 +84,9 @@ public class JStatement implements Statement {
       while ((scan = br.readLine()) != null) {
         load.add(scan);
       }
-      log.log("batch added successfully", "info");
+     
     } catch (final IOException e) {
       final SQLException e1 = new SQLException("not valid statment");
-      log.log("error during adding batch", "warn");
       throw e1;
     }
     // add
@@ -118,10 +113,8 @@ public class JStatement implements Statement {
     PrintWriter out = null;
     try {
       out = new PrintWriter(batch);
-      log.log("remove a batch", "info");
     } catch (final FileNotFoundException e) {
       final SQLException e1 = new SQLException("not valid statment");
-      log.log("error during removing batch", "info");
       throw e1;
     }
     out.close();
@@ -143,12 +136,10 @@ public class JStatement implements Statement {
           bridge.dirct(director, arr, protocol);
         } catch (final Exception e) {
           final SQLException e1 = new SQLException("not valid statment");
-          log.log("query failed", "info");
           throw e1;
         }
       } else {
         final SQLException e = new SQLException("not valid statment");
-        log.log("not valid statement", "info");
         throw e;
       }
     }
@@ -199,10 +190,8 @@ public class JStatement implements Statement {
                 for (int i = 0; i < update.length; i++) {
                   row.add(update[i]);
                 }
-                log.log("batch executed", "info");
               } catch (TransformerException | SAXException
                   | ParserConfigurationException e) {
-            	  log.log("batch execution failed", "info");
                 final SQLException e1 = new SQLException("not valid statment");
                 throw e1;
               }
@@ -244,7 +233,6 @@ public class JStatement implements Statement {
     } catch (TransformerException | SAXException | IOException
         | ParserConfigurationException e) {
       final SQLException e1 = new SQLException("not valid statment");
-      log.log("not valid statement", "warn");
       throw e1;
     }
     ArrayList<String> colNames = null;
@@ -255,7 +243,6 @@ public class JStatement implements Statement {
           tablename);
     } catch (final ParserConfigurationException e) {
       final SQLException e1 = new SQLException("not valid statment");
-      log.log("not valid statement", "info");
       throw e1;
     }
     if (arr[0].equalsIgnoreCase("select")) {
@@ -281,7 +268,6 @@ public class JStatement implements Statement {
   @Override
   public int executeUpdate(final String sql) throws SQLException {
     if (isClosed()) {
-    	log.log("statment is closed invalid execute", "warn");
       throw new SQLException();
     }
     int[] result = new int[0];
@@ -297,7 +283,6 @@ public class JStatement implements Statement {
         }
         result = bridge.dirct(director, arr, protocol);
       } catch (final Exception e) {
-    	  log.log("invalid statment", "info");
         final SQLException ex = new SQLException("not valid statment");
         throw ex;
       }

@@ -1,2 +1,4 @@
-Dec 17, 2016 7:48:51 PM JDBC.Log log
-INFO: d
+Dec 17, 2016 9:52:42 PM logging.Log log
+WARNING: invalid file writer
+Dec 17, 2016 9:52:42 PM logging.Log log
+INFO: use xml file
