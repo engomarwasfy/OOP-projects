@@ -6,7 +6,9 @@ import java.sql.Driver;
 import java.sql.DriverPropertyInfo;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
+import java.util.Iterator;
 import java.util.Properties;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import logging.Log;
@@ -71,7 +73,16 @@ public class JDriver implements Driver {
   @Override
   public DriverPropertyInfo[] getPropertyInfo(final String arg0, final Properties arg1)
       throws SQLException {
-    return null;
+	  Set x= arg1.keySet();
+		 DriverPropertyInfo []dr = new DriverPropertyInfo[x.size()];
+		 Iterator it = x.iterator();
+		 int count=0;
+		 while(it.hasNext()){
+			
+		   dr[count] = new DriverPropertyInfo( it.next().toString(),arg1.getProperty(it.toString()));
+		   count++;
+		 }
+	    return dr;
   }
 
   @Override
