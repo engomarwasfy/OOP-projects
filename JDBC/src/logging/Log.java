@@ -6,9 +6,13 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class Log {
-  private static int x = 0;
-	private static Logger logger = Logger.getLogger("MyLog");  
-	public static FileHandler  fh ; 
+  private static int x ;
+	private static Logger logger ;  
+	public static FileHandler  fh  ; 
+	static{
+		x=0;
+		logger = Logger.getLogger("MyLog");
+	}
 	private static void init(){
 		 try {
 			fh = new FileHandler("MyLogFile.log");
