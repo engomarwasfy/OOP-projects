@@ -27,7 +27,7 @@ public class JsonLoad {
 	ArrayList<AllShape> arr = new ArrayList<>();
 	ArrayList<AllShape> finalShapes = new ArrayList<>();
 	Gson gson = new Gson();
-	String json = "";
+	StringBuilder json = new StringBuilder() ;
 	FileInputStream fis = new FileInputStream(dir);
 
 	// Construct BufferedReader from InputStreamReader
@@ -36,10 +36,10 @@ public class JsonLoad {
 
 	String line = null;
 	while ((line = br.readLine()) != null) {
-	    json += line;
+	    json.append(line);
 	}
 	br.close();
-	arr = gson.fromJson(json, new TypeToken<ArrayList<RectangleImp>>() {
+	arr = gson.fromJson(json.toString(), new TypeToken<ArrayList<RectangleImp>>() {
 	}.getType());
 	for (AllShape s : arr) {
 	    float x1 = s.getX1();

@@ -22,10 +22,11 @@ public class LoadXml {
 	    System.out.println("ERROR: File .xml not found");
 	}
 	try {
-	    while (true) {
-		AllShape s = (AllShape) decoder.readObject();
-		shapes.add(s);
-	    }
+	    shapes = (ArrayList<AllShape>) decoder.readObject();
+//	    while (true) {
+//		AllShape s = (AllShape) decoder.readObject();
+//		shapes.add(s);
+//	    }
 	} catch (Exception e) {
 	}
 	return shapes;

@@ -21,7 +21,7 @@ public class DataBase implements ImethodOfDataBase {
   private ArrayList<String> tablesNames = new ArrayList<String>();
   private final ArrayList<String> batch = new ArrayList<String>();
   private static DataBase instance = new DataBase();
-  private IFile fileWriter = new XmlFile();
+  private IFile fileWriter = new JsonFile();
 
   private DataBase() {
   }
@@ -32,7 +32,7 @@ public class DataBase implements ImethodOfDataBase {
 
   public void setFileWriter(final String protocol) {
     if (protocol.equalsIgnoreCase("xmldb")) {
-      fileWriter = new XmlFile();
+      fileWriter = new JsonFile();
     } else {
       fileWriter = new JsonFile();
     }

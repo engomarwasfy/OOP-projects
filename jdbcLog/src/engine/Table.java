@@ -20,7 +20,7 @@ public class Table implements ImethodOfTable {
   private ArrayList<String> coulmsNames;
   private ArrayList<String> coulmsTypes;
   private ArrayList<ArrayList<String>> data;
-  private IFile fileWriter = new XmlFile();
+  private IFile fileWriter = new JsonFile();
   private static Table instance = new Table();
 
   private Table() {
@@ -37,7 +37,7 @@ public class Table implements ImethodOfTable {
 
   public void setFileWriter(final String protocol) {
     if (protocol.equalsIgnoreCase("xmldb")) {
-      fileWriter = new XmlFile();
+      fileWriter = new JsonFile();
     } else {
       fileWriter = new JsonFile();
     }

@@ -21,6 +21,7 @@ public class SaveXml {
 	XMLEncoder encoder = null;
 	try {
 	    encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(dir + ".xml")));
+//	    encoder.writeObject(shapes);
 	    for (AllShape s : shapes) {
 		encoder.writeObject(s);
 	    }
