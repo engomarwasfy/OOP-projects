@@ -36,7 +36,9 @@ public class Window extends Canvas {
 		frame.setMaximumSize(new Dimension(width, height));
 		frame.setMinimumSize(new Dimension(width, height));
 		save();
+		saveScore();
 		load();
+		loadScore();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setResizable(false);
@@ -88,6 +90,61 @@ public class Window extends Canvas {
 					fileChooser.showSaveDialog(null);
 					final String dir = fileChooser.getSelectedFile().toString();
 					final LoadGame load = new LoadGame(handler,game,fileChooser.getSelectedFile());
+					Game.pause = false;
+				} catch (final Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(load, Window.this, e1.toString(), 0);
+				}
+
+			}
+		});
+
+	}
+	
+	public void saveScore() {
+		final JMenuItem save = new JMenuItem("saveScore");
+		menu.add(save);
+		save.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				try {
+					Game.pause = true;
+					final JFileChooser fileChooser = new JFileChooser();
+					fileChooser.showSaveDialog(null);
+					final String dir = fileChooser.getSelectedFile().toString();
+					ScoreSaveAndLoad sl = new ScoreSaveAndLoad();
+					sl.save(dir);
+					Game.pause = false;
+
+				} catch (final Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(save, Window.this, e1.toString(), 0);
+				}
+
+			}
+		});
+		
+
+	}
+	
+	
+	public void loadScore() {
+		final JMenuItem load = new JMenuItem("loadScore");
+		menu.add(load);
+		load.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(final ActionEvent e) {
+				try {
+					Game.pause = true;
+					final JFileChooser fileChooser = new JFileChooser();
+					fileChooser.showSaveDialog(null);
+					final String dir = fileChooser.getSelectedFile().toString();
+					ScoreSaveAndLoad sl = new ScoreSaveAndLoad();
+					sl.load(dir);
 					Game.pause = false;
 				} catch (final Exception e1) {
 					// TODO Auto-generated catch block

@@ -96,7 +96,6 @@ public class Game extends Canvas implements Runnable {
   }
 
   private void render() {
-	// syncEnums();
     this.requestFocus();
 
     final BufferStrategy bs = this.getBufferStrategy();
@@ -148,24 +147,12 @@ public class Game extends Canvas implements Runnable {
       Logging.log("Game ended with Tie", "info");
     }
   }
-  public void syncEnums(){
-	  if(state instanceof MenuState){
-		  gameStateEnum =State.Menu;
-	  }else if(state instanceof GameOverState){
-		  gameStateEnum=State.GameOver;
-	  }else if(state instanceof SelectDiffecultyState){
-		  gameStateEnum=State.SelectDiffeculty;
-	  }else if(state instanceof GameState){
-		  gameStateEnum=State.Game;
-	  }
-  }
-
   public static void main(final String args[]) {
     Logging.log("Game started", "info");
     try{
     new Game();
     }catch(Exception e){
-    	
+   Logging.log("SomeThing went wrong", "warn");
     }
   }
 }

@@ -33,7 +33,7 @@ public class BlueClown extends GameObject implements ObservableIF{
   }
   public static boolean maxPlates;
 
-  private BlueClown(final int x, final int y, final ID id, final ObjectsHandler handler, final Game game) {
+  private BlueClown(final int x, final int y, final ID id, final ObjectsHandler handler, final Game game,int score) {
     super(x, y, ID.BlueClown);
     add(new Observer());
     factoryImage = new FactoryImage();
@@ -41,13 +41,13 @@ public class BlueClown extends GameObject implements ObservableIF{
     this.handler = handler;
     numOfPlatesStick1 = 0;
     numOfPlatesStick2 = 0;
-    score = 0;
+    this.score = score;
     rand = new Random();
     maxPlates = false;
   }
-  public static BlueClown getInstance(final int x, final int y, final ID id, final ObjectsHandler handler, final Game game){
+  public static BlueClown getInstance(final int x, final int y, final ID id, final ObjectsHandler handler, final Game game,int score){
     if (instance == null) {
-      return new BlueClown(x, y, id, handler, game);
+      return new BlueClown(x, y, id, handler, game,score);
     }
     return instance;
   }

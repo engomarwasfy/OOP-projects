@@ -29,7 +29,7 @@ public class GreenClown extends GameObject implements ObservableIF {
   private ObserverIF observer;
 
   private GreenClown(final int x, final int y, final ID id, final ObjectsHandler handler,
-      final Game game) {
+      final Game game,int score) {
     super(x, y, ID.GreenClown);
     add(new Observer());
     factoryImage = new FactoryImage();
@@ -44,9 +44,9 @@ public class GreenClown extends GameObject implements ObservableIF {
     this.game = game;
   }
   public static GreenClown getInstance(final int x, final int y, final ID id, final ObjectsHandler handler,
-      final Game game){
+      final Game game,int score){
     if (instance == null) {
-      return new GreenClown(x, y, id, handler, game);
+      return new GreenClown(x, y, id, handler, game,score);
     }
     return instance;
   }

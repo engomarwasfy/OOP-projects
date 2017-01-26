@@ -9,9 +9,9 @@ public class FactoryClown extends AbstractFactory{
   public GameObject getClown(final int x, final int y, final ID id,
       final ObjectsHandler handler, final Game game) {
     if (id == ID.BlueClown) {
-      return BlueClown.getInstance(x, y, id, handler, game);
+      return BlueClown.getInstance(x, y, id, handler, game,0);
     } else if (id == ID.GreenClown) {
-      return GreenClown.getInstance(x, y, id, handler, game);
+      return GreenClown.getInstance(x, y, id, handler, game,0);
     }
     return null;
   }

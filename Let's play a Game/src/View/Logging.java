@@ -34,8 +34,8 @@ public class Logging {
 		        // the following statement is used to log any messages
 		        if(type.equals("info")){
 			        logger.info(data);
-		        }else{
-		        	logger.warning(data);
+		        }else if(type.equals("warn")){
+		        	logger.warning(data);;
 		        }
 
 		    } catch (final SecurityException e) {

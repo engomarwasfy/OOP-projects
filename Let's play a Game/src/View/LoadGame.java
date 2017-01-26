@@ -104,7 +104,7 @@ public class LoadGame {
 					plate.playerStick = playerStick;
 					handler.addObject(plate);
 				} else if (f1.equals("GreenClown")) {
-					final GreenClown greenOne = GreenClown.getInstance(x, collisionY, direction, handler, game);
+					final GreenClown greenOne = GreenClown.getInstance(x, collisionY, direction, handler, game,0);
 					greenOne.id = ID.GreenClown;
 					greenOne.y = y;
 					greenOne.collision = collision;
@@ -115,7 +115,7 @@ public class LoadGame {
 					greenOne.playerStick = playerStick;
 					handler.addObject(greenOne);
 				} else if (f1.equalsIgnoreCase("BlueClown")) {
-					final BlueClown blueOne = BlueClown.getInstance(x, collisionY, direction, handler, game);
+					final BlueClown blueOne = BlueClown.getInstance(x, collisionY, direction, handler, game,0);
 					blueOne.id = ID.BlueClown;
 					blueOne.y = y;
 					blueOne.collision = collision;
